@@ -1,10 +1,25 @@
 import React, { useState, useEffect } from "react";
 
 interface Props {
+  /**
+   * size: optional number
+   * The width and height of the color wheel
+   * In pixels (px)
+   * Default is 300px
+   */
   size?: number;
+  /**
+   * isCompass: optional boolean
+   * Replaces the color wheel with a compass background
+   * Default is false
+   */
+  isCompass?: boolean;
 }
 
-export default function ColorWheel({ size = 300 }: Props): JSX.Element {
+export default function ColorWheel({
+  size = 300,
+  isCompass = false,
+}: Props): JSX.Element {
   const colorPointerSize = size / 10;
   const defaultREM = colorPointerSize / 10;
 
@@ -57,6 +72,13 @@ export default function ColorWheel({ size = 300 }: Props): JSX.Element {
       <div
         style={{ height: `${size}px`, width: `${size}px` }}
         onMouseMove={(e) => {
+          // Only capture mouse coordinates if the mouse
+          // is over this DOM element. Otherwise we may
+          // have the mouse over some text or the colorPointer
+          //   console.log(e.target, e.currentTarget);
+          //   if (e.target === e.currentTarget) {
+          // }
+          // FIXME: only capture mouse movement on this element
           setOffsetX(e.nativeEvent.offsetX);
           setOffsetY(e.nativeEvent.offsetY);
         }}
@@ -71,7 +93,9 @@ export default function ColorWheel({ size = 300 }: Props): JSX.Element {
             width: `${size}px`,
             borderRadius: "100%",
             /* Color wheel */
-            background: `conic-gradient(
+            background: isCompass
+              ? "transparent"
+              : `conic-gradient(
             hsl(0, 100%, 50%),
             hsl(45, 100%, 50%),
             hsl(90, 100%, 50%),
@@ -82,6 +106,7 @@ export default function ColorWheel({ size = 300 }: Props): JSX.Element {
             hsl(315, 100%, 50%),
             hsl(360, 100%, 50%)
             )`,
+            border: isCompass ? "1px solid green" : "none",
 
             //   background: `conic-gradient(
             // hsl(0, 100%, 50%),
@@ -90,7 +115,33 @@ export default function ColorWheel({ size = 300 }: Props): JSX.Element {
             // hsl(360, 100%, 50%)
             // )`,
           }}
-        />
+        >
+          {isCompass && (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-around",
+                alignItems: "center",
+                height: `${size}px`,
+              }}
+            >
+              <div>North</div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  width: "100%",
+                }}
+              >
+                <div>West</div>
+                <div>+</div>
+                <div>East</div>
+              </div>
+              <div>South</div>
+            </div>
+          )}
+        </div>
         <div
           style={{
             height: `${colorPointerSize}px`,
@@ -110,7 +161,7 @@ export default function ColorWheel({ size = 300 }: Props): JSX.Element {
           height: `${size}px`,
           width: `${size}px`,
           backgroundColor: `hsl(${hslTheta}rad, 100%, 50%)`,
-          margin: `${defaultREM}rem`
+          margin: `${defaultREM}rem`,
         }}
       ></div>
     </div>
