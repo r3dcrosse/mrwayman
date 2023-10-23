@@ -14,11 +14,22 @@ interface Props {
    * Default is false
    */
   isCompass?: boolean;
+  /**
+   * personalized: optional boolean
+   * Replaces the colors on the color wheel with my
+   * personalized mapping:
+   * North -> Cyan
+   * East -> Yellow
+   * South -> Red
+   * West -> Purple
+   */
+  personalized?: boolean;
 }
 
 export default function ColorWheel({
   size = 300,
   isCompass = false,
+  personalized = false,
 }: Props): JSX.Element {
   const colorPointerSize = size / 10;
   const defaultREM = colorPointerSize / 10;
@@ -59,6 +70,42 @@ export default function ColorWheel({
     setExtrapolatedY(extraY + size / 2);
   }, [size, offsetX, offsetY]);
 
+  const getBackgroundColor = (): string => {
+    if (isCompass) return "transparent";
+    if (personalized)
+      return `conic-gradient(
+        hsl(360, 100%, 50%),
+        hsl(270, 100%, 50%),
+        hsl(180, 100%, 50%),
+        hsl(75, 100%, 50%),
+        hsl(0, 100%, 50%)
+        )`;
+
+    return `conic-gradient(
+        hsl(0, 100%, 50%),
+        hsl(45, 100%, 50%),
+        hsl(90, 100%, 50%),
+        hsl(135, 100%, 50%),
+        hsl(180, 100%, 50%),
+        hsl(225, 100%, 50%),
+        hsl(270, 100%, 50%),
+        hsl(315, 100%, 50%),
+        hsl(360, 100%, 50%)
+        )`;
+  };
+
+  const getLEDColor = () => {
+    /**
+     * For the personalized color wheel, we need to flip
+     * the color because we've rotated the wheel 180deg
+     */
+    if (personalized) {
+      return hslTheta * -1;
+    }
+
+    return hslTheta;
+  };
+
   return (
     <div
       style={{
@@ -70,15 +117,18 @@ export default function ColorWheel({
       }}
     >
       <div
-        style={{ height: `${size}px`, width: `${size}px` }}
+        style={{
+          height: `${size}px`,
+          width: `${size}px`,
+          /**
+           * Rotate the color wheel 180 degrees
+           * to display our personalized colors accurately
+           */
+          ...(personalized && {
+            transform: "rotate(180deg)",
+          }),
+        }}
         onMouseMove={(e) => {
-          // Only capture mouse coordinates if the mouse
-          // is over this DOM element. Otherwise we may
-          // have the mouse over some text or the colorPointer
-          //   console.log(e.target, e.currentTarget);
-          //   if (e.target === e.currentTarget) {
-          // }
-          // FIXME: only capture mouse movement on this element
           setOffsetX(e.nativeEvent.offsetX);
           setOffsetY(e.nativeEvent.offsetY);
         }}
@@ -93,27 +143,8 @@ export default function ColorWheel({
             width: `${size}px`,
             borderRadius: "100%",
             /* Color wheel */
-            background: isCompass
-              ? "transparent"
-              : `conic-gradient(
-            hsl(0, 100%, 50%),
-            hsl(45, 100%, 50%),
-            hsl(90, 100%, 50%),
-            hsl(135, 100%, 50%),
-            hsl(180, 100%, 50%),
-            hsl(225, 100%, 50%),
-            hsl(270, 100%, 50%),
-            hsl(315, 100%, 50%),
-            hsl(360, 100%, 50%)
-            )`,
+            background: getBackgroundColor(),
             border: isCompass ? "1px solid green" : "none",
-
-            //   background: `conic-gradient(
-            // hsl(0, 100%, 50%),
-            // hsl(75, 100%, 50%),
-            // hsl(180, 100%, 50%),
-            // hsl(360, 100%, 50%)
-            // )`,
           }}
         >
           {isCompass && (
@@ -143,10 +174,17 @@ export default function ColorWheel({
           )}
         </div>
         <div
+          onMouseMove={(e) => {
+            // When we have a mouseover event here
+            // stop the event propagation. Otherwise
+            // we get a bug where we reset offsetX and offsetY
+            // coordinates to their default position
+            e.stopPropagation();
+          }}
           style={{
             height: `${colorPointerSize}px`,
             width: `${colorPointerSize}px`,
-            backgroundColor: `hsl(${hslTheta}rad, 100%, 50%)`,
+            backgroundColor: `hsl(${getLEDColor()}rad, 100%, 50%)`,
             borderRadius: "100%",
             position: "relative",
             // Need to offset by half the width of the colorPointer
@@ -160,7 +198,7 @@ export default function ColorWheel({
         style={{
           height: `${size}px`,
           width: `${size}px`,
-          backgroundColor: `hsl(${hslTheta}rad, 100%, 50%)`,
+          backgroundColor: `hsl(${getLEDColor()}rad, 100%, 50%)`,
           margin: `${defaultREM}rem`,
         }}
       ></div>
