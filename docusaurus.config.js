@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'David Wayman | Fullstack Engineer',
-  tagline: 'Dinosaurs are cool',
+  title: 'David Wayman',
+  tagline: 'Full-stack software engineer with 6+ years of experience and 4 patents. Specialized in React/TypeScript and shipped back-end features in Go. Passionate about innovative user experiences and well-documented, maintainable code.',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here

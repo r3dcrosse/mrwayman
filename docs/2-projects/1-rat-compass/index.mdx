@@ -1,3 +1,5 @@
+import ColorWheel from "../../../src/components/ColorWheel";
+
 # Rat Compass
 
 ## Overview
@@ -11,11 +13,11 @@ No, I don't have [Synesthesia](https://en.wikipedia.org/wiki/Synesthesia), but I
 
 **Presenting**: Rat Compass
 
-![Demo of Rat Compass](./img/rat_compass.gif)
+![Demo of Rat Compass](../_img/rat_compass.gif)
 
 ## Concept
 
-Let's make it possible to interact with Earth's magnetic field as a colorful, synesthesic experience.
+Let's make it possible to interact with Earth's magnetic field as a colorful, synesthetic experience.
 
 :::tip
 
@@ -27,11 +29,9 @@ Click the color wheel or hover your mouse cursor over it to change the color.
 
 :::
 
-import ColorWheel from "./components/ColorWheel";
-
 <ColorWheel />
 
-Replacing the color wheel with a compass but keeping the same effect as above produces our underlaying concept.
+Replacing the color wheel with a compass but keeping the same effect as above produces our underlying concept.
 
 <ColorWheel isCompass />
 
@@ -46,7 +46,7 @@ Let's add a bit of a human touch to the color wheel. Instead of a direct, 360-de
 
 ## Code
 
-Here are relevant snippets that implement the above concept.
+Relevant snippets that implement the core concept.
 
 ### Reading compass sensor
 
@@ -102,3 +102,31 @@ void compassShow()
   }
 }
 ```
+
+## Photos
+
+### The Beginning
+
+![](../_img/rat_compass_v1_start.JPG)
+
+![](../_img/rat_compass_v1_start_2.JPG)
+
+### Original Concept
+
+![](../_img/rat_compass_v1_concept.JPG)
+
+### Testing the LEDs
+
+![Testing the LEDs](../_img/rat_compass_v1_led_test.gif)
+
+### Testing the Compass
+
+![Testing the Compass](../_img/rat_compass_v1_test.gif)
+
+### Closeups
+
+![Closeup while yellow](../_img/rat_compass_v1_closeup_yellow.JPG)
+
+![Closeup while purple](../_img/rat_compass_v1_closeup_purple.JPG)
+
+![Closeup while blue](../_img/rat_compass_v1_closeup_blue.JPG)
