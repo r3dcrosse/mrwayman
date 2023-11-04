@@ -116,84 +116,90 @@ export default function ColorWheel({
         marginTop: `${defaultREM}rem`,
       }}
     >
-      <div
-        style={{
-          height: `${size}px`,
-          width: `${size}px`,
-          /**
-           * Rotate the color wheel 180 degrees
-           * to display our personalized colors accurately
-           */
-          ...(personalized && {
-            transform: "rotate(180deg)",
-          }),
-        }}
-        onMouseMove={(e) => {
-          setOffsetX(e.nativeEvent.offsetX);
-          setOffsetY(e.nativeEvent.offsetY);
-        }}
-        onMouseDown={(e) => {
-          setOffsetX(e.nativeEvent.offsetX);
-          setOffsetY(e.nativeEvent.offsetY);
-        }}
-      >
+      <div style={{ display: "flex", width: `${size}px`, height: `${size}px` }}>
+        {isCompass && (
+          <div
+            style={{
+              position: "absolute",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              alignItems: "center",
+              height: `${size}px`,
+              width: `${size}px`,
+              zIndex: 0,
+            }}
+          >
+            <div>North</div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                width: "100%",
+              }}
+            >
+              <div>West</div>
+              <div>+</div>
+              <div>East</div>
+            </div>
+            <div>South</div>
+          </div>
+        )}
         <div
           style={{
             height: `${size}px`,
             width: `${size}px`,
-            borderRadius: "100%",
-            /* Color wheel */
-            background: getBackgroundColor(),
-            border: isCompass ? "1px solid green" : "none",
+            zIndex: 10,
+            /**
+             * Rotate the color wheel 180 degrees
+             * to display our personalized colors accurately
+             */
+            ...(personalized && {
+              transform: "rotate(180deg)",
+            }),
+          }}
+          onMouseMove={(e) => {
+            setOffsetX(e.nativeEvent.offsetX);
+            setOffsetY(e.nativeEvent.offsetY);
+          }}
+          onMouseDown={(e) => {
+            setOffsetX(e.nativeEvent.offsetX);
+            setOffsetY(e.nativeEvent.offsetY);
           }}
         >
-          {isCompass && (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-around",
-                alignItems: "center",
-                height: `${size}px`,
-              }}
-            >
-              <div>North</div>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-around",
-                  width: "100%",
-                }}
-              >
-                <div>West</div>
-                <div>+</div>
-                <div>East</div>
-              </div>
-              <div>South</div>
-            </div>
-          )}
+          <div
+            style={{
+              height: `${size}px`,
+              width: `${size}px`,
+              borderRadius: "100%",
+              /* Color wheel */
+              background: getBackgroundColor(),
+              border: isCompass ? "1px solid green" : "none",
+            }}
+          ></div>
+          <div
+            onMouseMove={(e) => {
+              // When we have a mouseover event here
+              // stop the event propagation. Otherwise
+              // we get a bug where we reset offsetX and offsetY
+              // coordinates to their default position
+              e.stopPropagation();
+            }}
+            style={{
+              height: `${colorPointerSize}px`,
+              width: `${colorPointerSize}px`,
+              backgroundColor: `hsl(${getLEDColor()}rad, 100%, 50%)`,
+              borderRadius: "100%",
+              position: "relative",
+              // Need to offset by half the width of the colorPointer
+              // if you'd like it centered
+              bottom: `${extrapolatedY + colorPointerSize / 2}px`,
+              left: `${extrapolatedX - colorPointerSize / 2}px`,
+            }}
+          />
         </div>
-        <div
-          onMouseMove={(e) => {
-            // When we have a mouseover event here
-            // stop the event propagation. Otherwise
-            // we get a bug where we reset offsetX and offsetY
-            // coordinates to their default position
-            e.stopPropagation();
-          }}
-          style={{
-            height: `${colorPointerSize}px`,
-            width: `${colorPointerSize}px`,
-            backgroundColor: `hsl(${getLEDColor()}rad, 100%, 50%)`,
-            borderRadius: "100%",
-            position: "relative",
-            // Need to offset by half the width of the colorPointer
-            // if you'd like it centered
-            bottom: `${extrapolatedY + colorPointerSize / 2}px`,
-            left: `${extrapolatedX - colorPointerSize / 2}px`,
-          }}
-        />
       </div>
+
       <div
         style={{
           height: `${size}px`,
