@@ -1,0 +1,21 @@
+.number {
+  display: flex;
+  flex-direction: column;
+  width: 25px;
+}
+
+.number > div {
+  width: 25px;
+  height: 12.5px;
+}
+
+.letter {
+  display: flex;
+  flex-direction: row;
+  width: 25px;
+}
+
+.letter > div {
+  width: 12.5px;
+  height: 25px;
+}
