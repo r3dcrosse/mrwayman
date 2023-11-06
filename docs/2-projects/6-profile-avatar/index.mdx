@@ -13,9 +13,17 @@ Type in a username/handle/name to generate a pixel avatar.
 
 :::
 
+## Idea 3: Build a UI to "paint" with hashes
+
+- Provide a selector for which hash to use (SHA256, SHA512, etc). This controls the size of canvas
+- Provide a couple of sliders to control what variables in HexRow.tsx get placed where
+- Add geometric effects to take the produced hash painting and mirror it/make it into something interesting
+
 ## Idea 2: Use hex colors for each 6 pixels
 
-<AvatarGenerator art={Art.hexColor} />
+<AvatarGenerator art={Art.horizontalHexColor} />
+
+<AvatarGenerator art={Art.verticalHexColor} />
 
 ## Idea 1: pixels
 

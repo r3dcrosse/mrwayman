@@ -9,7 +9,8 @@ export enum Controls {
 
 export enum Art {
   pixel = "pixel",
-  hexColor = "hexColor",
+  horizontalHexColor = "horizontalHexColor",
+  verticalHexColor = "verticalHexColor",
   /**
    * will display each character of the
    * hash instead of a stylized pixel

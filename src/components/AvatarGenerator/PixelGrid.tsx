@@ -34,11 +34,13 @@ export default function PixelGrid({
                 <div key={columnIndex} style={{ width: "25px" }}>
                   {art === Art.rawHash && r}
                   {art === Art.pixel && <StyledPixel value={r} />}
-                  {art === Art.hexColor && (
+                  {(art === Art.horizontalHexColor ||
+                    art === Art.verticalHexColor) && (
                     <HexRow
                       hash={sha256Hash}
                       rowIndex={rowIndex}
                       columnIndex={columnIndex}
+                      art={art}
                     />
                   )}
                 </div>
