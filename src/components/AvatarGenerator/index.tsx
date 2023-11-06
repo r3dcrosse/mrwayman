@@ -2,22 +2,46 @@ import React, { useState, useEffect } from "react";
 
 import PixelGrid from "./PixelGrid";
 
+export enum Controls {
+  blur = "blur",
+  hueRotate = "hueRotate",
+}
+
+export enum Art {
+  pixel = "pixel",
+  hexColor = "hexColor",
+  /**
+   * will display each character of the
+   * hash instead of a stylized pixel
+   */
+  rawHash = "rawHash",
+}
+
 interface Props {
   /**
-   * displayRaw: optional boolean that will display
-   * each character of the hash instead of a
-   * stylized pixel
+   * art: which art to apply to the pixel grid
    */
-  displayRaw?: boolean;
+  art?: Art;
+  /**
+   * controls: optional array of filters to apply
+   * on the end result grid
+   */
+  controls?: Array<Controls>;
 }
 
 export default function AvatarGenerator({
-  displayRaw = false,
+  controls = [],
+  art = Art.pixel,
 }: Props): JSX.Element {
   const [text, setText] = useState<string>("");
   const [SHA256Hash, setSHA256Hash] = useState<string>("");
-  const [blur, setBlur] = useState<string>(displayRaw ? "0" : "5");
+  const [blur, setBlur] = useState<string>("0");
   const [hueRotation, setHueRotation] = useState<string>("0");
+
+  const controlProps: Record<string, unknown> = {};
+  if (controls.includes(Controls.blur)) controlProps.blur = blur;
+  if (controls.includes(Controls.hueRotate))
+    controlProps.hueRotate = hueRotation;
 
   /**
    * Use this effect to convert the username text string
@@ -42,13 +66,8 @@ export default function AvatarGenerator({
         }}
         style={{ marginBottom: "1rem" }}
       />
-      <PixelGrid
-        sha256Hash={SHA256Hash}
-        displayRaw={displayRaw}
-        blur={blur}
-        hueRotation={hueRotation}
-      />
-      {!displayRaw && (
+      <PixelGrid sha256Hash={SHA256Hash} art={art} {...controlProps} />
+      {controls.includes(Controls.blur) && (
         <div
           style={{
             marginTop: "2rem",
@@ -70,6 +89,17 @@ export default function AvatarGenerator({
             }}
             type="range"
           />
+        </div>
+      )}
+      {controls.includes(Controls.hueRotate) && (
+        <div
+          style={{
+            marginTop: "2rem",
+            display: "flex",
+            flexDirection: "column",
+            width: "200px",
+          }}
+        >
           <label htmlFor="hue">Hue Rotation</label>
           <input
             id="hue"

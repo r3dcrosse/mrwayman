@@ -1,19 +1,22 @@
 import React from "react";
 
 import StyledPixel from "./StyledPixel";
+import HexRow from "./HexRow";
+
+import { Art } from "./";
 
 interface Props {
   sha256Hash: string;
-  displayRaw: boolean;
-  blur: string;
-  hueRotation: string;
+  art: Art;
+  blur?: string;
+  hueRotation?: string;
 }
 
 export default function PixelGrid({
   sha256Hash,
-  displayRaw,
-  blur,
-  hueRotation,
+  blur = "0",
+  hueRotation = "0",
+  art,
 }: Props): JSX.Element {
   const grid = makeGridArray(sha256Hash);
 
@@ -23,13 +26,21 @@ export default function PixelGrid({
         filter: `blur(${blur}px)  hue-rotate(${hueRotation}deg)`,
       }}
     >
-      {grid.map((row, i) => {
+      {grid.map((row, rowIndex) => {
         return (
-          <div key={i} style={{ display: "flex", width: "100%" }}>
-            {row.map((r, k) => {
+          <div key={rowIndex} style={{ display: "flex", width: "100%" }}>
+            {row.map((r, columnIndex) => {
               return (
-                <div key={k} style={{ width: "25px" }}>
-                  {displayRaw ? r : <StyledPixel value={r} />}
+                <div key={columnIndex} style={{ width: "25px" }}>
+                  {art === Art.rawHash && r}
+                  {art === Art.pixel && <StyledPixel value={r} />}
+                  {art === Art.hexColor && (
+                    <HexRow
+                      hash={sha256Hash}
+                      rowIndex={rowIndex}
+                      columnIndex={columnIndex}
+                    />
+                  )}
                 </div>
               );
             })}

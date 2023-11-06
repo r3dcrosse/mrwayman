@@ -1,4 +1,7 @@
-import AvatarGenerator from "../../../src/components/AvatarGenerator";
+import AvatarGenerator, {
+  Controls,
+  Art,
+} from "../../../src/components/AvatarGenerator";
 
 # Profile Avatar
 
@@ -10,10 +13,19 @@ Type in a username/handle/name to generate a pixel avatar.
 
 :::
 
-<AvatarGenerator />
+## Idea 2: Use hex colors for each 6 pixels
+
+<AvatarGenerator art={Art.hexColor} />
+
+## Idea 1: pixels
+
+<AvatarGenerator
+  controls={[Controls.blur, Controls.hueRotate]}
+  art={Art.pixel}
+/>
 
 ## Concept
 
 Take a SHA256 hash of a string and map each char to a grid going left to right, top to bottom.
 
-<AvatarGenerator displayRaw />
+<AvatarGenerator art={Art.rawHash} />
