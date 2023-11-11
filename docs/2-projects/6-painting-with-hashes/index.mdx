@@ -1,0 +1,43 @@
+import PixelGenerator, {
+  Controls,
+  Art,
+} from "../../../src/components/PixelGenerator";
+
+# Painting with hashes
+
+Inspired by GitHub's profile avatar feature, I wanted to build a tool that does something similar but with more degrees of freedom to express one's digital presence.
+
+:::tip
+
+Type in a username/handle/name to generate a pixel avatar.
+
+:::
+
+## Idea 3: Build a UI to "paint" with hashes
+
+- Provide a selector for which hash to use (SHA256, SHA512, etc). This controls the size of canvas
+- Provide a couple of sliders to control what variables in HexRow.tsx get placed where
+- Add geometric effects to take the produced hash painting and mirror it/make it into something interesting
+
+## Idea 2: Use hex colors for each 6 pixels
+
+<PixelGenerator art={Art.horizontalHexColor} />
+
+<div style={{marginTop:"4rem"}} />
+
+<PixelGenerator art={Art.verticalHexColor} />
+
+<div style={{marginTop:"4rem"}} />
+
+## Idea 1: pixels
+
+<PixelGenerator
+  controls={[Controls.blur, Controls.hueRotate]}
+  art={Art.pixel}
+/>
+
+## Concept
+
+Take a SHA256 hash of a string and map each char to a grid going left to right, top to bottom.
+
+<PixelGenerator art={Art.rawHash} />

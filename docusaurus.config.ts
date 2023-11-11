@@ -1,47 +1,52 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
-import type * as Preset from '@docusaurus/preset-classic';
+import { themes as prismThemes } from "prism-react-renderer";
+import type { Config } from "@docusaurus/types";
+import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
-  title: 'David Wayman',
-  tagline: 'Full-stack software engineer with 6+ years of experience and 4 patents. Specialized in React/TypeScript and shipped back-end features in Go. Passionate about innovative user experiences and well-documented, maintainable code.',
-  favicon: 'img/favicon.ico',
+  title: "David Wayman",
+  tagline:
+    "Full-stack software engineer with 6+ years of experience and 4 patents. Specialized in React/TypeScript and shipped back-end features in Go. Passionate about innovative user experiences and well-documented, maintainable code.",
+  favicon: "img/favicon.ico",
 
   // Set the production url of your site here
-  url: 'https://mrwayman.com',
+  url: "https://mrwayman.com",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: "/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'r3dcrosse', // Usually your GitHub org/user name.
-  projectName: 'mrwayman', // Usually your repo name.
+  organizationName: "r3dcrosse", // Usually your GitHub org/user name.
+  projectName: "mrwayman", // Usually your repo name.
 
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: "en",
+    locales: ["en"],
   },
 
   presets: [
     [
-      'classic',
+      "classic",
       {
         docs: {
-          sidebarPath: './sidebars.ts',
+          sidebarPath: "./sidebars.ts",
           routeBasePath: "stuff",
         },
-        blog: {
-          showReadingTime: true,
-        },
+        /**
+         * Disable Blog for until you have blog posts ready
+         */
+        // blog: {
+        //   showReadingTime: true,
+        // },
+        blog: false,
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: "./src/css/custom.css",
         },
       } satisfies Preset.Options,
     ],
@@ -49,54 +54,57 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: 'Home',
+      title: "David Wayman",
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: "My Site Logo",
+        src: "img/logo.svg",
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'About Me',
+          type: "docSidebar",
+          sidebarId: "tutorialSidebar",
+          label: "About Me",
+          position: "right",
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        // {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/r3dcrosse',
-          label: 'GitHub',
-          position: 'left',
+          href: "https://github.com/r3dcrosse",
+          label: "GitHub",
+          position: "right",
         },
       ],
     },
     footer: {
-      style: 'dark',
+      style: "dark",
       links: [
         {
-          title: 'Docs',
+          title: "Docs",
           items: [
             {
-              label: 'About Me',
-              to: '/stuff/intro',
+              label: "About Me",
+              to: "/stuff/intro",
             },
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
+            /**
+             * Disable Blog for until you have blog posts ready
+             */
+            // {
+            //   label: 'Blog',
+            //   to: '/blog',
+            // },
           ],
         },
         {
-          title: 'Contact Me',
+          title: "Contact Me",
           items: [
             {
-              label: 'GitHub',
-              href: 'https://github.com/r3dcrosse',
+              label: "GitHub",
+              href: "https://github.com/r3dcrosse",
             },
             {
-              label: 'LinkedIn',
-              href: 'https://www.linkedin.com/in/mrwayman',
+              label: "LinkedIn",
+              href: "https://www.linkedin.com/in/mrwayman",
             },
           ],
         },
