@@ -1,4 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import {
+  radToDegrees,
+  normalizeDegrees,
+  getQuadrant,
+  hslColorQuadrant,
+  hslToCustomColorQuadrant,
+  linearInterpolation,
+} from "./utils";
 
 interface Props {
   /**
@@ -47,14 +55,8 @@ export default function ColorWheel({
     const normalizedX = offsetX - size / 2;
     const normalizedY = size / 2 - offsetY;
 
-    // Convert to polar coordinates to get r and theta
-    const r = Math.sqrt(normalizedX ** 2 + normalizedY ** 2);
-
     const theta = Math.atan2(normalizedY, normalizedX);
-
-    // We need to rotate the hsl theta by 90 degrees
-    // to get it to match up with the hsl color wheel
-    setHslTheta(theta * -1 + Math.PI / 2);
+    setHslTheta(theta);
 
     // Get the edge of the circle
     // this is always going to be equal to the radius
@@ -70,40 +72,50 @@ export default function ColorWheel({
     setExtrapolatedY(extraY + size / 2);
   }, [size, offsetX, offsetY]);
 
-  const getBackgroundColor = (): string => {
+  const getConicGradient = (): string => {
     if (isCompass) return "transparent";
-    if (personalized)
-      return `conic-gradient(
-        hsl(360, 100%, 50%),
-        hsl(270, 100%, 50%),
-        hsl(180, 100%, 50%),
-        hsl(75, 100%, 50%),
-        hsl(0, 100%, 50%)
-        )`;
 
-    return `conic-gradient(
-        hsl(0, 100%, 50%),
-        hsl(45, 100%, 50%),
-        hsl(90, 100%, 50%),
-        hsl(135, 100%, 50%),
-        hsl(180, 100%, 50%),
-        hsl(225, 100%, 50%),
-        hsl(270, 100%, 50%),
-        hsl(315, 100%, 50%),
-        hsl(360, 100%, 50%)
-        )`;
-  };
-
-  const getLEDColor = () => {
-    /**
-     * For the personalized color wheel, we need to flip
-     * the color because we've rotated the wheel 180deg
-     */
     if (personalized) {
-      return hslTheta * -1;
+      return `conic-gradient(
+      from 180deg,
+      hsl(360, 100%, 50%),
+      hsl(270, 100%, 50%),
+      hsl(180, 100%, 50%),
+      hsl(75, 100%, 50%),
+      hsl(0, 100%, 50%)
+      )`;
     }
 
-    return hslTheta;
+    return `conic-gradient(
+      from 90deg,
+      hsl(360, 100%, 50%),
+      hsl(315, 100%, 50%),
+      hsl(270, 100%, 50%),
+      hsl(225, 100%, 50%),
+      hsl(180, 100%, 50%),
+      hsl(135, 100%, 50%),
+      hsl(90, 100%, 50%),
+      hsl(45, 100%, 50%),
+      hsl(0, 100%, 50%)
+    )`;
+  };
+
+  const getColor = (): string => {
+    if (personalized) {
+      let deg = parseFloat(radToDegrees(hslTheta).toFixed(20));
+      deg = normalizeDegrees(deg);
+
+      const quad = getQuadrant(deg);
+      const interpolatedColorDeg = linearInterpolation(
+        deg,
+        hslColorQuadrant[quad],
+        hslToCustomColorQuadrant[quad]
+      );
+
+      return `hsl(${interpolatedColorDeg}deg, 100%, 50%)`;
+    }
+
+    return `hsl(${hslTheta}rad, 100%, 50%)`;
   };
 
   return (
@@ -150,13 +162,6 @@ export default function ColorWheel({
             height: `${size}px`,
             width: `${size}px`,
             zIndex: 10,
-            /**
-             * Rotate the color wheel 180 degrees
-             * to display our personalized colors accurately
-             */
-            ...(personalized && {
-              transform: "rotate(180deg)",
-            }),
           }}
           onMouseMove={(e) => {
             setOffsetX(e.nativeEvent.offsetX);
@@ -172,11 +177,10 @@ export default function ColorWheel({
               height: `${size}px`,
               width: `${size}px`,
               borderRadius: "100%",
-              /* Color wheel */
-              background: getBackgroundColor(),
+              background: getConicGradient(),
               border: isCompass ? "1px solid green" : "none",
             }}
-          ></div>
+          />
           <div
             onMouseMove={(e) => {
               // When we have a mouseover event here
@@ -188,7 +192,7 @@ export default function ColorWheel({
             style={{
               height: `${colorPointerSize}px`,
               width: `${colorPointerSize}px`,
-              backgroundColor: `hsl(${getLEDColor()}rad, 100%, 50%)`,
+              background: getColor(),
               borderRadius: "100%",
               position: "relative",
               // Need to offset by half the width of the colorPointer
@@ -204,8 +208,9 @@ export default function ColorWheel({
         style={{
           height: `${size}px`,
           width: `${size}px`,
-          backgroundColor: `hsl(${getLEDColor()}rad, 100%, 50%)`,
+          background: getColor(),
           margin: `${defaultREM}rem`,
+          borderRadius: "4px",
         }}
       ></div>
     </div>
