@@ -9,13 +9,13 @@ interface Project {
 }
 
 const projects: Array<Project> = [
-    {
-        title: "Hash Painting",
-        imageURL: "/img/hash_painting.gif",
-        projectURL: "/stuff/projects/painting-with-hashes/",
-        subtitle1: "React.js | SHA-256 | CSS Color",
-        subtitle2: "A tool to convert text to colorful visuals.",
-    },
+  {
+    title: "Hash Painting",
+    imageURL: "/img/hash_painting.gif",
+    projectURL: "/stuff/projects/painting-with-hashes/",
+    subtitle1: "React.js | SHA-256 | CSS Color",
+    subtitle2: "A tool to convert text to colorful visuals.",
+  },
   {
     title: "Rat Compass",
     imageURL: "/img/rat_compass_small.gif",
@@ -31,6 +31,13 @@ const projects: Array<Project> = [
     subtitle1: "Ultra short-throw projectors | MadMapper",
     subtitle2:
       "Playing around with ultra short-throw projectors and MadMapper. Provided visuals at Something Queer 2022.",
+  },
+  {
+    title: "BAAAHS LED Light Show (2015)",
+    imageURL: "/img/baaahs_2015.gif",
+    projectURL: "/stuff/projects/baaahs-2015/",
+    subtitle1: "Python | Processing | LEDs",
+    subtitle2: "An LED Light show for the BAAAHS Art Car",
   },
 ];
 

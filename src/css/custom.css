@@ -115,13 +115,14 @@
 .project--grid {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
 }
 
 .project--wrapper {
   width: 400px;
   display: block;
+  margin: 1rem 0;
 }
 
 .project_img--wrapper {
@@ -146,6 +147,7 @@
 .project_subtitle--2 {
   font-family: Crimson Pro;
   font-size: 1.125rem;
+  line-height: normal;
 }
 
 [data-theme="dark"] .project--wrapper,
