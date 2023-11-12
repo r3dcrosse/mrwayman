@@ -63,6 +63,12 @@ const config: Config = {
       },
       items: [
         {
+          href: "/#projects",
+          label: "Projects",
+          position: "right",
+
+        },
+        {
           type: "docSidebar",
           sidebarId: "tutorialSidebar",
           label: "About Me",

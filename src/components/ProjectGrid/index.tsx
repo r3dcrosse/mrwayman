@@ -52,7 +52,9 @@ export default function ProjectGrid() {
   return (
     <div className="container" style={{ paddingTop: "2rem" }}>
       <Link tabIndex={0} to="/stuff/projects" className="projects--heading">
-        <h1>Projects</h1>
+        <h1 id="projects" style={{ scrollMarginTop: "5rem" }}>
+          Projects
+        </h1>
       </Link>
       <div className="project--grid">
         {projects.map((project) => {

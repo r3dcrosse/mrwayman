@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import Wheel from "./Wheel";
+
 interface Props {
   size?: number;
   mixBlendMode?: React.CSSProperties["mixBlendMode"];
@@ -18,12 +20,19 @@ export default function InteractiveColorWheel({
         flexDirection: "row",
         justifyContent: "space-around",
         alignItems: "center",
-        flexWrap: "wrap",
+        flexWrap: "wrap-reverse",
       }}
     >
       <div>
-        <label style={{ display: "flex" }}>
-          Rotation
+        <label
+          style={{
+            display: "flex",
+            alignItems: "center",
+            padding: "1rem",
+            width: "200px",
+          }}
+        >
+          <span>Rotation</span>
           <input
             id="rotation"
             name="rotation"
@@ -35,7 +44,9 @@ export default function InteractiveColorWheel({
               setRotation(e.target.value);
             }}
             type="range"
+            style={{ margin: "0 1rem" }}
           />
+          <span>{rotation}°</span>
         </label>
       </div>
       <div
@@ -58,46 +69,4 @@ export default function InteractiveColorWheel({
   );
 }
 
-interface WheelProps {
-  size?: number;
-  style?: React.CSSProperties;
-  square?: boolean;
-  rotation?: string;
-}
 
-function Wheel({
-  size = 300,
-  style = {},
-  square = false,
-  rotation = "0",
-}: WheelProps) {
-  const getConicGradient = () => {
-    return `conic-gradient(
-                from 90deg,
-                hsl(360, 100%, 50%),
-                hsl(315, 100%, 50%),
-                hsl(270, 100%, 50%),
-                hsl(225, 100%, 50%),
-                hsl(180, 100%, 50%),
-                hsl(135, 100%, 50%),
-                hsl(90, 100%, 50%),
-                hsl(45, 100%, 50%),
-                hsl(0, 100%, 50%)
-            )`;
-  };
-
-  return (
-    <div
-      style={{
-        position: "absolute",
-        top: 0,
-        height: `${size}px`,
-        width: `${size}px`,
-        borderRadius: square ? 0 : "100%",
-        background: getConicGradient(),
-        transform: `rotate(${rotation}deg)`,
-        ...style,
-      }}
-    />
-  );
-}
