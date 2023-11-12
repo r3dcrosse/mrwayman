@@ -58,8 +58,8 @@ const config: Config = {
     navbar: {
       title: "David Wayman",
       logo: {
-        alt: "My Site Logo",
-        src: "img/logo.svg",
+        alt: "David Wayman smiling",
+        src: "img/logo.png",
       },
       items: [
         {
