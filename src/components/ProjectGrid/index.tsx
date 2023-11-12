@@ -63,6 +63,7 @@ export default function ProjectGrid() {
                   <img
                     src={require(`@site/static${project.imageURL}`).default}
                     className="project_img"
+                    loading="lazy"
                   />
                 </div>
                 <h2>{project.title}</h2>

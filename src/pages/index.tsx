@@ -36,6 +36,7 @@ function HomepageHeader() {
           </Ellipse>
           <img
             alt="David Wayman smiling for the camera"
+            loading="lazy"
             src={require("@site/static/img/david.png").default}
             style={{ width: "187px", height: "180px", margin: "1rem" }}
           />
