@@ -44,15 +44,13 @@ Let's add a bit of a human touch to the color wheel. Instead of a direct, 360-de
 
 <ColorWheel personalized />
 
-<ColorWheel />
-
 ## Code
 
 Relevant snippets that implement the core concept.
 
 ### Reading compass sensor
 
-```ino
+```c
 float compass_heading = 0;
 
 void onReadCompass()
@@ -74,7 +72,7 @@ void onReadCompass()
 
 ### Updating LEDs
 
-```ino
+```c
 void compassShow()
 {
   uint32_t color = black;

@@ -10,6 +10,13 @@ interface Project {
 
 const projects: Array<Project> = [
   {
+    title: "Browser Color Wheels",
+    imageURL: "/img/browser_color_wheels.gif",
+    projectURL: "/stuff/projects/color-wheels",
+    subtitle1: "React.js | HSL Color | CSS Blend Modes",
+    subtitle2: "A playful exploration of Color and CSS Blend Modes",
+  },
+  {
     title: "Hash Painting",
     imageURL: "/img/hash_painting.gif",
     projectURL: "/stuff/projects/painting-with-hashes/",

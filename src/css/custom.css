@@ -9,7 +9,7 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
+  --ifm-color-primary: #9a563d;
   --ifm-color-primary-dark: #29784c;
   --ifm-color-primary-darker: #277148;
   --ifm-color-primary-darkest: #205d3b;
@@ -21,11 +21,13 @@
 
   font-family: Figtree, sans-serif;
   --ifm-heading-font-family: Figtree, sans-serif;
+  --ifm-font-color-base: #2d3648;
+  /* --ifm-navbar-height: 84px; */
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
-  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary: #9a563d;
   --ifm-color-primary-dark: #21af90;
   --ifm-color-primary-darker: #1fa588;
   --ifm-color-primary-darkest: #1a8870;
@@ -34,45 +36,66 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 
-  --ifm-background-color: #2d3648 !important;
+  --ifm-background-color: #282E39 !important;
+  --ifm-font-color-base: #f9f5e0;
 }
 
 [data-theme="dark"] .navbar {
-  background-color: #222733;
+  background-color: #0d0e12;
 }
 
 .navbar__title {
-  font-size: 2.25rem;
+  font-family: Figtree;
+  font-size: 22px;
   font-style: normal;
-  font-weight: 800;
-  line-height: 120%; /* 43.2px */
-  letter-spacing: 0.0225rem;
+  font-weight: 700;
+  line-height: 120%; /* 26.4px */
+  letter-spacing: 0.22px;
+}
+
+[data-theme="dark"] .navbar__title {
+  color: #f9f5e0;
+}
+
+.hero--primary {
+  --ifm-hero-background-color: #f9f5e0;
+}
+
+[data-theme="dark"] .hero--primary {
+  --ifm-hero-background-color: #1b1f27;
+}
+
+.hero__title,
+.hero__subtitle,
+.hi,
+.david {
+  color: var(--ifm-font-color-base);
+}
+
+/* [data-theme="dark"] .hero__title,
+[data-theme="dark"] .hero__subtitle {
+  color: #f9f5e0;
+} */
+
+.hero__subtitle {
+  font-size: 0.875rem;
 }
 
 .ellipse_h--1 {
-  color: #fff;
+  color: #fefefb;
   text-align: center;
-  font-family: Figtree, sans-serif;
-  font-size: 50px;
+  font-family: Figtree;
+  font-size: 41.17px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
 
-.hero--primary {
-  --ifm-hero-background-color: #32353c;
-}
-
-.hero__title,
-.hero__subtitle {
-  color: #f9f5e0;
-}
-
 .ellipse_h--2 {
-  color: #fff;
+  color: #fefefb;
   text-align: center;
   font-family: Figtree;
-  font-size: 26px;
+  font-size: 21px;
   font-style: normal;
   font-weight: 700;
   width: 178px;
@@ -80,18 +103,21 @@
 }
 
 .ellipse_text {
-  color: #fff;
+  color: #fefefb;
   text-align: center;
   font-family: Crimson Pro;
-  font-size: 18px;
+  font-size: 14.821px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   line-height: normal;
-  width: 107px;
+  width: 87px;
+}
+
+.ellipse__blob {
+  margin: 1rem;
 }
 
 .hi {
-  color: #e0ded1;
   text-align: center;
   font-family: Figtree;
   font-size: 34px;
@@ -102,7 +128,6 @@
 }
 
 .david {
-  color: #f9f5e0;
   text-align: center;
   font-family: Figtree;
   font-size: 64px;
@@ -150,12 +175,13 @@
   line-height: normal;
 }
 
-[data-theme="dark"] .project--wrapper,
-[data-theme="dark"] .project_subtitle--1,
-[data-theme="dark"] .project_subtitle--2 {
-  color: #FFF;
+.project-heading,
+.project--wrapper,
+.project_subtitle--1,
+.project_subtitle--2 {
+  color: var(--ifm-font-color-base);
 }
 
-[data-theme="dark"] .project-heading {
-  color: "#F9F5E0";
+.project--wrapper a {
+  color: var(--ifm-font-color-base);
 }

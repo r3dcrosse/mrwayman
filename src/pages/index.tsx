@@ -15,7 +15,7 @@ function HomepageHeader() {
           Software engineer
         </Heading>
         <p className="hero__subtitle">
-          React | TypeScript/JavaScript | Go | Python
+          React | TypeScript / JavaScript | Go | Python
         </p>
         <div
           style={{
@@ -28,15 +28,16 @@ function HomepageHeader() {
         >
           <Ellipse variation={9}>
             <div className="ellipse_h--1">6+</div>
-            <div className="ellipse_text">years experience</div>
+            <div className="ellipse_text">years of experience</div>
           </Ellipse>
           <Ellipse variation={6}>
             <div className="ellipse_h--1">4</div>
             <div className="ellipse_text">patents</div>
           </Ellipse>
           <img
-            alt="David Wayman posing for the camera, eating from a tub of ice cream"
+            alt="David Wayman smiling for the camera"
             src={require("@site/static/img/david.png").default}
+            style={{ width: "187px", height: "180px", margin: "1rem" }}
           />
           <Ellipse variation={7}>
             <div className="ellipse_h--2">React / TypeScript</div>
@@ -58,10 +59,7 @@ function HomepageHeader() {
 
 export default function Home(): JSX.Element {
   return (
-    <Layout
-      title="Hi, I'm David"
-      description=""
-    >
+    <Layout title="Hi, I'm David" description="">
       <HomepageHeader />
       <main>
         <ProjectGrid />

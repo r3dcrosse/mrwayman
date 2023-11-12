@@ -29,16 +29,16 @@ export default function Ellipse({
 
   switch (variation) {
     case 6:
-      ellipse = <Ellipse6 aria-hidden="true" />;
+      ellipse = <Ellipse6 aria-hidden="true" className="ellipse__blob" />;
       break;
     case 7:
-      ellipse = <Ellipse7 aria-hidden="true" />;
+      ellipse = <Ellipse7 aria-hidden="true" className="ellipse__blob" />;
       break;
     case 8:
-      ellipse = <Ellipse8 aria-hidden="true" />;
+      ellipse = <Ellipse8 aria-hidden="true" className="ellipse__blob" />;
       break;
     case 9:
-      ellipse = <Ellipse9 aria-hidden="true" />;
+      ellipse = <Ellipse9 aria-hidden="true" className="ellipse__blob" />;
       break;
     default:
       break;
