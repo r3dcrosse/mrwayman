@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Link from "@docusaurus/Link";
 
 interface Project {
@@ -57,20 +58,28 @@ export default function ProjectGrid() {
         </h1>
       </Link>
       <div className="project--grid">
-        {projects.map((project) => {
+        {projects.map((project, i) => {
           return (
             <div className="project--wrapper" key={project.projectURL}>
               <Link to={project.projectURL}>
-                <div className="project_img--wrapper">
-                  <img
-                    src={require(`@site/static${project.imageURL}`).default}
-                    className="project_img"
-                    loading="lazy"
-                  />
+                <div
+                  className={clsx("project__item", {
+                    "project__item--reverse": i % 2 === 0,
+                  })}
+                >
+                  <div className="project_img--wrapper">
+                    <img
+                      src={require(`@site/static${project.imageURL}`).default}
+                      className="project_img"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="project_desc--wrapper">
+                    <h2>{project.title}</h2>
+                    <p className="project_subtitle--1">{project.subtitle1}</p>
+                    <p className="project_subtitle--2">{project.subtitle2}</p>
+                  </div>
                 </div>
-                <h2>{project.title}</h2>
-                <p className="project_subtitle--1">{project.subtitle1}</p>
-                <p className="project_subtitle--2">{project.subtitle2}</p>
               </Link>
             </div>
           );

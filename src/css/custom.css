@@ -139,6 +139,7 @@
 
 .project--grid {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -156,7 +157,25 @@
 .project--wrapper {
   width: 400px;
   display: block;
-  margin: 1rem 0;
+  margin: 8rem 0;
+  width: 100%;
+}
+
+.project--wrapper > a {
+  text-decoration: none;
+}
+
+.project__item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.project__item--reverse {
+  flex-direction: row-reverse;
 }
 
 .project_img--wrapper {
@@ -176,6 +195,19 @@
   height: 100%;
   object-fit: cover;
   border-radius: 8px;
+}
+
+.project_desc--wrapper {
+  max-width: 280px;
+}
+
+.project--wrapper:hover .project_desc--wrapper > h2 {
+  text-decoration: underline;
+}
+
+.project_subtitle--1,
+.project_subtitle--2 {
+  --ifm-link-hover-decoration: none !important;
 }
 
 .project_subtitle--2 {
