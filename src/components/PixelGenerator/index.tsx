@@ -28,11 +28,25 @@ interface Props {
    * on the end result grid
    */
   controls?: Array<Controls>;
+  /**
+   * value: optional string to use for the text.
+   *
+   * Passing in this option makes the component
+   * "controlled".
+   */
+  value?: string;
+  /**
+   * hideInput: optional boolean. 
+   * Hides the input field.
+   */
+  hideInput?: boolean;
 }
 
 export default function PixelGenerator({
   controls = [],
   art = Art.pixel,
+  value,
+  hideInput = false,
 }: Props): JSX.Element {
   const [text, setText] = useState<string>("");
   const [SHA256Hash, setSHA256Hash] = useState<string>("");
@@ -55,18 +69,20 @@ export default function PixelGenerator({
       setSHA256Hash(hash);
     }
 
-    getHashFromText(text);
-  }, [text]);
+    getHashFromText(value ?? text);
+  }, [text, value]);
 
   return (
     <div>
-      <input
-        type="text"
-        onChange={(e) => {
-          setText(e.target.value);
-        }}
-        style={{ marginBottom: "1rem" }}
-      />
+      {hideInput && (
+        <input
+          type="text"
+          onChange={(e) => {
+            setText(e.target.value);
+          }}
+          style={{ marginBottom: "1rem" }}
+        />
+      )}
       <PixelGrid sha256Hash={SHA256Hash} art={art} {...controlProps} />
       {controls.includes(Controls.blur) && (
         <div

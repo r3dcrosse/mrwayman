@@ -29,6 +29,7 @@ export default function HexRow({
           width: "25px",
           height: "25px",
           backgroundColor: `#${hexColor}`,
+          transition: "background-color 0.2s",
         }}
       />
     );
@@ -87,9 +88,9 @@ export default function HexRow({
   // const hexColor = hash.slice(startOfColor, endOfColor);
 
   // Very cool near diagonal pattern
-  // const startOfColor = Math.floor(rowIndex / 6) + colorIndex;
-  // const endOfColor = startOfColor + 6;
-  // const hexColor = hash.slice(startOfColor, endOfColor);
+  const startOfColor = Math.floor(rowIndex / 6) + colorIndex;
+  const endOfColor = startOfColor + 6;
+  const hexColor = hash.slice(startOfColor, endOfColor);
 
   // Perfect diagonal pattern
   // const startOfColor = Math.floor(rowIndex / 6) + colorIndex;
@@ -113,13 +114,20 @@ export default function HexRow({
   // const hexColor = hash.slice(startOfColor, endOfColor);
 
   // Cool irregular pattern of opposite diagonal
-  const startOfColor = Math.floor(columnIndex + rowIndex / 6) + columnIndex;
-  const endOfColor =  rowIndex + 6;
-  const hexColor = hash.slice(startOfColor, endOfColor);
+  // const startOfColor = Math.floor(columnIndex + rowIndex / 6) + columnIndex;
+  // const endOfColor = rowIndex + 6;
+  // const hexColor = hash.slice(startOfColor, endOfColor);
 
   return (
     <div
-      style={{ width: "25px", height: "25px", backgroundColor: `#${hexColor}` }}
+      style={{
+        // width: "25px",
+        // height: "25px",
+        width: "50px",
+        height: "50px",
+        backgroundColor: `#${hexColor}`,
+        transition: "background-color 0.2s",
+      }}
     />
   );
 }

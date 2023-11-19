@@ -39,7 +39,7 @@ const config: Config = {
           routeBasePath: "stuff",
         },
         /**
-         * Disable Blog for until you have blog posts ready
+         * Disable Blog until you have blog posts ready
          */
         // blog: {
         //   showReadingTime: true,

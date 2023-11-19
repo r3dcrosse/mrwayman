@@ -31,7 +31,7 @@ export default function PixelGrid({
           <div key={rowIndex} style={{ display: "flex", width: "100%" }}>
             {row.map((r, columnIndex) => {
               return (
-                <div key={columnIndex} style={{ width: "25px" }}>
+                <div key={columnIndex} style={{ width: "100%" }}>
                   {art === Art.rawHash && r}
                   {art === Art.pixel && <StyledPixel value={r} />}
                   {(art === Art.horizontalHexColor ||
