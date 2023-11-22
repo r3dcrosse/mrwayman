@@ -36,17 +36,22 @@ interface Props {
    */
   value?: string;
   /**
-   * hideInput: optional boolean. 
+   * hideInput: optional boolean.
    * Hides the input field.
    */
   hideInput?: boolean;
+  /**
+   * pixelSize: The size of each pixel in px.
+   * Default is 25px.
+   */
+  pixelSize?: number;
 }
 
 export default function PixelGenerator({
   controls = [],
   art = Art.pixel,
   value,
-  hideInput = false,
+  pixelSize = 25,
 }: Props): JSX.Element {
   const [text, setText] = useState<string>("");
   const [SHA256Hash, setSHA256Hash] = useState<string>("");
@@ -74,16 +79,19 @@ export default function PixelGenerator({
 
   return (
     <div>
-      {hideInput && (
-        <input
-          type="text"
-          onChange={(e) => {
-            setText(e.target.value);
-          }}
-          style={{ marginBottom: "1rem" }}
-        />
-      )}
-      <PixelGrid sha256Hash={SHA256Hash} art={art} {...controlProps} />
+      <input
+        type="text"
+        onChange={(e) => {
+          setText(e.target.value);
+        }}
+        style={{ marginBottom: "1rem" }}
+      />
+      <PixelGrid
+        sha256Hash={SHA256Hash}
+        art={art}
+        pixelSize={pixelSize}
+        {...controlProps}
+      />
       {controls.includes(Controls.blur) && (
         <div
           style={{

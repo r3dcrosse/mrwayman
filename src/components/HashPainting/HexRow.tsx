@@ -7,7 +7,7 @@ interface Props {
   rowIndex: number;
   columnIndex: number;
   art?: Art.horizontalHexColor | Art.verticalHexColor;
-  pixelSize?: number;
+  size?: number;
 }
 
 export default function HexRow({
@@ -15,7 +15,7 @@ export default function HexRow({
   rowIndex,
   columnIndex,
   art = Art.horizontalHexColor,
-  pixelSize,
+  size,
 }: Props): JSX.Element {
   const colorIndex = rowIndex + columnIndex;
 
@@ -28,8 +28,8 @@ export default function HexRow({
     return (
       <div
         style={{
-          width: `${pixelSize}px`,
-          height: `${pixelSize}px`,
+          width: `${size}px`,
+          height: `${size}px`,
           backgroundColor: `#${hexColor}`,
           transition: "background-color 0.2s",
         }}
@@ -123,8 +123,8 @@ export default function HexRow({
   return (
     <div
       style={{
-        width: `${pixelSize}px`,
-        height: `${pixelSize}px`,
+        width: `${size}px`,
+        height: `${size}px`,
         backgroundColor: `#${hexColor}`,
         transition: "background-color 0.2s",
       }}

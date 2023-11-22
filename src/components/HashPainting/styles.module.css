@@ -1,0 +1,36 @@
+.playButton,
+.resetButton {
+    background-color: #005FCC;
+    border: none;
+    height: 5rem;
+    border-radius: 6px;
+    font-size: 1.3rem;
+}
+
+.playButton {
+    margin-right: 1rem;
+    flex-basis: 75%;
+}
+
+.resetButton {
+    flex-basis: 25%;
+}
+
+.playButton:hover,
+.resetButton:hover {
+    background-color: red;
+    cursor: pointer;
+}
+
+.playing {
+    background-color: red;
+}
+
+.playing:hover {
+    background-color: #005FCC;
+}
+
+.currentWord {
+    color: red;
+    font-weight: bold;
+}
