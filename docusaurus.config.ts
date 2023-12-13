@@ -36,7 +36,8 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          routeBasePath: "stuff",
+          routeBasePath: "projects",
+          path: "projects",
         },
         /**
          * Disable Blog until you have blog posts ready
@@ -64,16 +65,10 @@ const config: Config = {
       },
       items: [
         {
-          href: "/#projects",
           label: "Projects",
+          to: "/projects",
           position: "right",
 
-        },
-        {
-          type: "docSidebar",
-          sidebarId: "tutorialSidebar",
-          label: "About Me",
-          position: "right",
         },
         // {to: '/blog', label: 'Blog', position: 'left'},
         {
@@ -87,14 +82,14 @@ const config: Config = {
       style: "dark",
       links: [
         {
-          title: "Docs",
+          title: "Portfolio",
           items: [
             {
-              label: "About Me",
-              to: "/stuff/intro",
+              label: "All Projects",
+              to: "/projects",
             },
             /**
-             * Disable Blog for until you have blog posts ready
+             * Disable Blog until you have blog posts ready
              */
             // {
             //   label: 'Blog',

@@ -1,0 +1,61 @@
+---
+displayed_sidebar: projectSidebar
+---
+
+# Sparkle Motion
+
+## Overview
+
+[Sparkle Motion](https://github.com/baaahs/sparklemotion) is a tool for controlling and interacting with the 60,000+ LEDs on the [BAAAHS](https://baaahs.org/) Burning Man art car.
+
+:::info
+
+I co-led this massive volunteer effort along with [Christian Williams](https://github.com/xian) and [Tom Seago](https://github.com/tomseago).
+
+My specific contributions include:
+
+- Designed and developed core web UI elements in React.js.
+- Developed the initial API Proposal for light shows and contributed commits to pass data to the web front end from the Kotlin back end.
+- Designed the LED form factor to use in the panels.
+
+See the [complete list of my commits](https://github.com/baaahs/sparklemotion/commits?author=r3dcrosse) and the [full list of contributors](https://github.com/baaahs/sparklemotion/graphs/contributors).
+
+:::
+
+## Simulator and Web UI
+
+![Sparkle Motion Web UI](./_img/sparkle_motion.gif)
+
+## Web UI for interacting with LEDs
+
+I developed the control panel UI, including the slider components.
+
+![Detail of web user interface](./_img/web_ui_1.png)
+
+![Detail of web user interface with color wheel](./_img/web_ui_2.png)
+
+## Result
+
+### Panel Mapping
+
+Each LED panel gets mapped relative to its geometry on the 3D model of the art car. Only 1/2 of the panels on the art car get mapped: the driver's side, which contains the DJ booth. [Christian Williams](https://github.com/xian) developed the computer vision mapping feature built into the Sparkle Motion Web UI.
+
+![Panel Mapping a panel using Sparkle Motion](./_img/panel_mapping.jpg)
+
+### Assembling Panels
+
+![Assembling panels on the BAAAHS art car](./_img/panel_assembly.jpg)
+
+### Test Run
+
+A test run of the first LED light show.
+
+![A test run of the first LED light show](./_img/test_run.gif)
+
+### Happy Partygoers
+
+A crowd of happy partygoers dances as the legendary [Carl Cox](https://carlcox.com/) DJs from the BAAAHS art car. The art car is also a mobile sound system.
+
+<video controls width="50%">
+  <source src="/video/baaahs_party.webm" type="video/webm" />
+</video>

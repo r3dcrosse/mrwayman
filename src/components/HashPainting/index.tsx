@@ -1,5 +1,6 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import clsx from "clsx";
+import { toPng } from "html-to-image";
 import FilmStrip from "./FilmStrip";
 import styles from "./styles.module.css";
 
@@ -43,6 +44,7 @@ export default function HashPainting({
   const [wordSpeed, setWordSpeed] = useState<number>(1000);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [frames, setFrames] = useState<Array<FrameMetadata>>([]);
+  const paintingRef = useRef(null);
 
   const words = useMemo(() => {
     return text.split(/[\s]+/);
@@ -125,12 +127,31 @@ export default function HashPainting({
     setFrames([]);
   };
 
+  const handleSavePNG = () => {
+    if (paintingRef?.current) {
+      toPng(paintingRef?.current)
+        .then((dataUrl) => {
+          const a = document.createElement("a");
+          a.href = dataUrl;
+          a.target = "_self";
+          a.download = "hash-poem";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  };
+
   return (
     <div style={{ display: "flex", flexDirection: "row", height: "100%" }}>
       <div
         style={{
           maxWidth: "50vw",
           //   flexBasis: "50%",
+          maxHeight: "80vh",
           height: "100%",
           padding: "1rem",
           flexGrow: 0,
@@ -139,17 +160,17 @@ export default function HashPainting({
           top: "0",
         }}
       >
-        <h1>Hash Painting</h1>
-        <p>Generate colors from a SHA-256 hash</p>
+        <h1>Painting Poems with Hashes</h1>
+        <p>Enter a poem or text, then press the play button.</p>
         <p>
-          Enter some text, such as a poem. Press the play button to view the
-          hash painting for each word.
+          Each word is hashed using SHA-256, then colors are generated from the
+          hexadecimal characters in the hash. The result is a "hash-painting."
         </p>
         {!isPlaying && (
           <textarea
             style={{
               width: "100%",
-              height: "calc(80vh - 10rem)",
+              height: "calc(70vh - 12rem)",
               marginBottom: "1rem",
               padding: "1rem",
             }}
@@ -162,7 +183,7 @@ export default function HashPainting({
           />
         )}
         {isPlaying && (
-          <pre style={{ height: "calc(80vh - 10rem)" }}>
+          <pre style={{ height: "calc(70vh - 12rem)" }}>
             {zip(arr1, arr2, 0, index)}
             <span className={styles.currentWord}>
               {zip(arr1, arr2, index, index + 1)}
@@ -170,27 +191,33 @@ export default function HashPainting({
             {zip(arr1, arr2, index + 1, arr1.length)}
           </pre>
         )}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <button
-            onClick={() => {
-              setIsPlaying((p) => !p);
+        <div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
             }}
-            className={clsx(styles.playButton, {
-              [styles.playing]: isPlaying,
-            })}
           >
-            {isPlaying ? "Pause" : "Play"}
-          </button>
-          <button onClick={handleReset} className={styles.resetButton}>
-            Reset
-          </button>
+            <button
+              onClick={() => {
+                setIsPlaying((p) => !p);
+              }}
+              className={clsx(styles.playButton, {
+                [styles.playing]: isPlaying,
+              })}
+            >
+              {isPlaying ? "Pause" : "Play"}
+            </button>
+            <button onClick={handleReset} className={styles.resetButton}>
+              Reset
+            </button>
+          </div>
         </div>
+
+        <button onClick={handleSavePNG} className={styles.saveButton}>
+          Save as .png
+        </button>
       </div>
       <div
         style={{
@@ -206,12 +233,13 @@ export default function HashPainting({
          * When rendering the film strip, set a buffer limit on the
          * maximum number of frames to draw, to avoid adding too
          * many elements to the DOM.
-         * 
+         *
          * Allegedly, the DOM can render ~1500 nodes before performance
-         * starts to degrade. We can notice this if we set a 
+         * starts to degrade. We can notice this if we set a
          * maxFrameBuffer too high.
          */}
         <FilmStrip
+          ref={paintingRef}
           frames={frames.slice(-1 * maxFrameBuffer)}
           art={Art.verticalHexColor}
           size={size}

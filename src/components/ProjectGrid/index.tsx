@@ -11,23 +11,23 @@ interface Project {
 
 const projects: Array<Project> = [
   {
-    title: "Browser Color Wheels",
-    imageURL: "/img/browser_color_wheels.gif",
-    projectURL: "/stuff/projects/color-wheels",
-    subtitle1: "React.js | HSL Color | CSS Blend Modes",
-    subtitle2: "A playful exploration of Color and CSS Blend Modes",
+    title: "Sparkle Motion",
+    imageURL: "/img/sparkle_motion_square.gif",
+    projectURL: "/projects/sparkle-motion",
+    subtitle1: "LEDs | Kotlin | React.js | Burning Man",
+    subtitle2: "Web UI for interacting with LEDs on the BAAAHS Burning Man art car.",
   },
   {
-    title: "Hash Painting",
+    title: "Painting Poems with Hashes",
     imageURL: "/img/hash_painting.gif",
-    projectURL: "/stuff/projects/painting-with-hashes/",
-    subtitle1: "React.js | SHA-256 | CSS Color",
+    projectURL: "/projects/painting-poems-with-hashes",
+    subtitle1: "React.js | SHA-256 | Hex Colors",
     subtitle2: "A tool to convert text to colorful visuals.",
   },
   {
-    title: "Rat Compass",
+    title: "Directions from a Rat",
     imageURL: "/img/rat_compass_small.gif",
-    projectURL: "/stuff/projects/rat-compass/",
+    projectURL: "/projects/sparkle-motion",
     subtitle1: "Arduino | Compass Sensor | LEDs",
     subtitle2:
       "Let's make it possible to interact with Earth's magnetic field as a colorful, synesthetic experience.",
@@ -35,28 +35,23 @@ const projects: Array<Project> = [
   {
     title: "Projection Mapping",
     imageURL: "/img/projection_mapping_home.gif",
-    projectURL: "/stuff/projects/projection-mapping/",
+    projectURL: "/projects/sparkle-motion",
     subtitle1: "Ultra short-throw projectors | MadMapper",
     subtitle2:
       "Playing around with ultra short-throw projectors and MadMapper. Provided visuals at Something Queer 2022.",
   },
-  {
-    title: "BAAAHS LED Light Show (2015)",
-    imageURL: "/img/baaahs_2015.gif",
-    projectURL: "/stuff/projects/baaahs-2015/",
-    subtitle1: "Python | Processing | LEDs",
-    subtitle2: "An LED Light show for the BAAAHS Art Car",
-  },
+  // {
+  //   title: "Sparkle Motion",
+  //   imageURL: "/img/sparkle_motion_square.gif",
+  //   projectURL: "/stuff/projects/color-wheels",
+  //   subtitle1: "React.js | HSL Color | CSS Blend Modes",
+  //   subtitle2: "A playful exploration of Color and CSS Blend Modes",
+  // },
 ];
 
 export default function ProjectGrid() {
   return (
-    <div className="container" style={{ paddingTop: "2rem" }}>
-      <Link tabIndex={0} to="/stuff/projects" className="projects--heading">
-        <h1 id="projects" style={{ scrollMarginTop: "5rem" }}>
-          Projects
-        </h1>
-      </Link>
+    <div className="container">
       <div className="project--grid">
         {projects.map((project, i) => {
           return (
@@ -76,8 +71,8 @@ export default function ProjectGrid() {
                   </div>
                   <div className="project_desc--wrapper">
                     <h2>{project.title}</h2>
-                    <p className="project_subtitle--1">{project.subtitle1}</p>
                     <p className="project_subtitle--2">{project.subtitle2}</p>
+                    <p className="project_subtitle--1">{project.subtitle1}</p>
                   </div>
                 </div>
               </Link>

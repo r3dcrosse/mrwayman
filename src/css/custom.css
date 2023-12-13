@@ -147,6 +147,14 @@
   flex-wrap: wrap;
 }
 
+.projects--heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 3rem;
+}
+
 .projects--heading > h1 {
   color: var(--ifm-font-color-base);
   font-size: 3rem;
@@ -160,7 +168,7 @@
   width: 400px;
   display: block;
   border-radius: 8px;
-  margin: 4rem 0;
+  margin: 1rem 0;
   width: 100%;
 }
 

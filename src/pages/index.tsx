@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import Link from "@docusaurus/Link";
 import Layout from "@theme/Layout";
 import Heading from "@theme/Heading";
 
@@ -63,6 +64,17 @@ export default function Home(): JSX.Element {
     <Layout title="Hi, I'm David" description="">
       <HomepageHeader />
       <main>
+        <Link tabIndex={0} to="/projects" className="projects--heading">
+          <h1
+            id="projects"
+            style={{
+              scrollMarginTop: "5rem",
+            }}
+          >
+            Projects
+          </h1>
+        </Link>
+
         <ProjectGrid />
       </main>
     </Layout>

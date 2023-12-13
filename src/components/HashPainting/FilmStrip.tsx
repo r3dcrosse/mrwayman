@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { forwardRef } from "react";
 
 import Frame, { FrameMetadata } from "./Frame";
 
@@ -11,14 +11,14 @@ interface Props {
   size?: number;
 }
 
-export default function FilmStrip({
-  frames,
-  hueRotation = "0",
-  art,
-  size,
-}: Props): JSX.Element {
+export default forwardRef(function FilmStrip(
+  { frames, hueRotation = "0", art, size }: Props,
+  ref
+): JSX.Element {
   return (
     <div
+      // @ts-ignore ignoring because the ref still works
+      ref={ref}
       style={{
         filter: `hue-rotate(${hueRotation}deg)`,
         display: "flex",
@@ -30,4 +30,4 @@ export default function FilmStrip({
       })}
     </div>
   );
-}
+});

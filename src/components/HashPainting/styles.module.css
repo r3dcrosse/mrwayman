@@ -1,5 +1,6 @@
 .playButton,
-.resetButton {
+.resetButton,
+.saveButton {
     background-color: #005FCC;
     border: none;
     height: 5rem;
@@ -16,10 +17,21 @@
     flex-basis: 25%;
 }
 
+.saveButton {
+    width: 100%;
+    background-color: #43c841;
+    margin-top: 1rem;
+}
+
 .playButton:hover,
-.resetButton:hover {
+.resetButton:hover,
+.saveButton:hover {
     background-color: red;
     cursor: pointer;
+}
+
+.saveButton:hover {
+    background-color: #f0d43a;
 }
 
 .playing {
