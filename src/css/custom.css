@@ -60,18 +60,25 @@
 }
 
 .hero--primary {
-  --ifm-hero-background-color: #f9f5e0;
+  --ifm-hero-background-color: #1b1f27;
 }
 
 [data-theme="dark"] .hero--primary {
   --ifm-hero-background-color: #1b1f27;
 }
 
-.hero__title,
+/* .hero__title,
 .hero__subtitle,
 .hi,
 .david {
   color: var(--ifm-font-color-base);
+} */
+
+.hero__title,
+.hero__subtitle,
+.hi,
+.david {
+  color: #f9f5e0;
 }
 
 /* [data-theme="dark"] .hero__title,
