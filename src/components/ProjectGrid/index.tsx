@@ -15,38 +15,40 @@ const projects: Array<Project> = [
     imageURL: "/img/sparkle_motion_square.gif",
     projectURL: "/projects/sparkle-motion",
     subtitle1: "LEDs | Kotlin | React.js | Burning Man",
-    subtitle2: "Web UI for interacting with LEDs on the BAAAHS Burning Man art car.",
+    subtitle2:
+      "Web UI for interacting with LEDs on the BAAAHS Burning Man art car.",
   },
   {
     title: "Painting poems from hashes",
     imageURL: "/img/painting-poems-from-hashes.gif",
     projectURL: "/projects/painting-poems-from-hashes",
     subtitle1: "React.js | SHA-256 | Hex Colors",
-    subtitle2: "A tool for converting poems and text into colorful visuals, all through the magic of hashes.",
+    subtitle2:
+      "A tool for converting poems and text into colorful visuals, all through the magic of hashes.",
   },
   {
     title: "Directions from a rat",
     imageURL: "/img/rat_compass_small.gif",
-    projectURL: "/projects/sparkle-motion",
-    subtitle1: "Arduino | Compass Sensor | LEDs",
+    projectURL: "/projects/directions-from-a-rat",
+    subtitle1: "LEDs | Arduino | Compass Sensor",
     subtitle2:
-      "Let's make it possible to interact with Earth's magnetic field as a colorful, synesthetic experience.",
+      "A tool for interacting with Earth's magnetic field and exploring the intersection of computation and light to provide a sense of direction.",
   },
   {
     title: "Animating light painting",
-    imageURL: "/img/projection_mapping_home.gif",
-    projectURL: "/projects/sparkle-motion",
-    subtitle1: "Ultra short-throw projectors | MadMapper",
+    imageURL: "/img/animated-light-painting.gif",
+    projectURL: "/projects/animating-light-painting",
+    subtitle1: "LEDs | Python | Long-exposure Photography",
     subtitle2:
-      "Playing around with ultra short-throw projectors and MadMapper. Provided visuals at Something Queer 2022.",
+      "Reproducing frames from Ryan Larkin's Walking (1968) using long-exposure photography while painting with light.",
   },
-  // {
-  //   title: "Sparkle Motion",
-  //   imageURL: "/img/sparkle_motion_square.gif",
-  //   projectURL: "/stuff/projects/color-wheels",
-  //   subtitle1: "React.js | HSL Color | CSS Blend Modes",
-  //   subtitle2: "A playful exploration of Color and CSS Blend Modes",
-  // },
+  {
+    title: "Exploring CSS: mix-blend-mode",
+    imageURL: "/img/browser_color_wheels.gif",
+    projectURL: "/projects/exploring-css-mix-blend-mode",
+    subtitle1: "React.js | HSL Color | CSS Blend Modes",
+    subtitle2: "A playful exploration of color and CSS blend modes.",
+  },
 ];
 
 export default function ProjectGrid() {

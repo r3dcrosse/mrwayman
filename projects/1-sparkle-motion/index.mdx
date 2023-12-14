@@ -4,13 +4,22 @@ displayed_sidebar: projectSidebar
 
 # Sparkle Motion
 
+![Sparkle Motion Web UI](./_img/sparkle_motion.gif)
+
 ## Overview
 
-[Sparkle Motion](https://github.com/baaahs/sparklemotion) is a tool for controlling and interacting with over 60,000+ LEDs on the [BAAAHS](https://baaahs.org/) Burning Man art car. 
+[Sparkle Motion](https://github.com/baaahs/sparklemotion) is a tool for controlling and interacting with over 60,000+ LEDs on the [BAAAHS](https://baaahs.org/) Burning Man art car.
 
-An interface exploring how computation meets light.
+An interface for playing with light.
 
-:::info
+|                      |                                                                                                        |
+| -------------------- | ------------------------------------------------------------------------------------------------------ |
+| <b>Role</b>          | Co-lead, designer, developer                                                                           |
+| <b>Collaborators</b> | Lead: [Christian Williams](https://github.com/xian), Co-lead: [Tom Seago](https://github.com/tomseago) |
+| <b>GitHub</b>        | [https://github.com/baaahs/sparklemotion](https://github.com/baaahs/sparklemotion)                     |
+| <b>Tech</b>          | LEDs, Kotlin, React.js, GLSL                                                                           |
+
+:::important
 
 I co-led this massive volunteer effort along with [Christian Williams](https://github.com/xian) and [Tom Seago](https://github.com/tomseago).
 
@@ -20,13 +29,21 @@ My specific contributions include:
 - Developed the initial API Proposal for light shows and contributed commits to pass data to the web front end from the Kotlin back end.
 - Designed the LED form factor to use in the panels.
 
-See the [complete list of my commits](https://github.com/baaahs/sparklemotion/commits?author=r3dcrosse) and the [full list of contributors](https://github.com/baaahs/sparklemotion/graphs/contributors).
+See the [complete list of my commits](https://github.com/baaahs/sparklemotion/commits?author=r3dcrosse) and the [full list of contributors](https://github.com/baaahs/sparklemotion/graphs/contributors). Thank you to all the volunteers that helped make this project possible!
 
 :::
 
-## Simulator and Web UI
+## Initial LED Panel Prototype
 
-![Sparkle Motion Web UI](./_img/sparkle_motion.gif)
+I chose a particular wiry form of LED in the initial panel prototype.
+
+![LED form factor](./_img/led-form-factor.jpg)
+
+The LED's wiry, bendy form illuminates the panel in a certain tie-dye likeness. 
+
+The randomness of the placement of each pixel lends an organic quality to the light.
+
+![Initial LED Panel Prototype](./_img/led-panel-prototype.gif)
 
 ## Web UI for interacting with LEDs
 
@@ -36,17 +53,25 @@ I developed the control panel UI, including the slider components.
 
 ![Detail of web user interface with color wheel](./_img/web_ui_2.png)
 
-## Result
+## 3D Simulator and Web UI
 
-### Panel Mapping
+The 3D simulator includes an interactive iPad preview interface for controlling the running light show. A majority of our light shows are written in OpenGL Shading Language (GLSL).
+
+![3D Simulator and Web UI](./_img/web-simulator-ui.gif)
+
+## Panel Mapping
 
 Each LED panel gets mapped relative to its geometry on the 3D model of the art car. Only 1/2 of the panels on the art car get mapped: the driver's side, which contains the DJ booth. [Christian Williams](https://github.com/xian) developed the computer vision mapping feature built into the Sparkle Motion Web UI.
 
 ![Panel Mapping a panel using Sparkle Motion](./_img/panel_mapping.jpg)
 
-### Assembling Panels
+## Assembling Panels
+
+Thank you to all the volunteers that helped assemble panels and the art car!
 
 ![Assembling panels on the BAAAHS art car](./_img/panel_assembly.jpg)
+
+## Result
 
 ### Test Run
 

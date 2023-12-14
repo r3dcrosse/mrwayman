@@ -2,5 +2,172 @@
 displayed_sidebar: projectSidebar
 ---
 
+import MaybeInteractive from "../../src/components/MaybeInteractive";
+import ColorWheel from "../../src/components/ColorWheel";
+
 # Directions from a rat
 
+![Demo of a rat glowing different colors](./_img/directions-from-a-rat.gif)
+
+## Overview
+
+A tool for interacting with Earth's magnetic field and exploring the intersection of computation and light to provide a sense of direction.
+
+It started with this thought:
+
+> What if we made use of color to give us direction?
+> What would that look like?
+
+No, I don't have [Synesthesia](https://en.wikipedia.org/wiki/Synesthesia), but I do have some LEDs, a magnetometer (compass) sensor, and a plastic rat skeleton.
+
+Let's make it possible to interact with Earth's magnetic field as a colorful, synesthetic experience.
+
+|             |                               |
+| ----------- | ----------------------------- |
+| <b>Role</b> | Creator, designer, developer  |
+| <b>Tech</b> | LEDs, Arduino, compass sensor |
+
+## Concept
+
+### HSL Color
+
+An HSL (Hue, Saturation, Lightness) color wheel is a convenient way to convert compass sensor data into color because color is represented in 0 - 360 degrees.
+
+<MaybeInteractive alt="Color wheel concept" src="/img/og_color_concept.gif">
+  <ColorWheel />
+</MaybeInteractive>
+
+### Compass Data
+
+Replacing the color wheel with a compass but keeping the same effect as above produces our underlying concept.
+
+<MaybeInteractive
+  alt="Compass data mapped to a color wheel"
+  src="/img/color_compass_concept.gif"
+>
+  <ColorWheel isCompass />
+</MaybeInteractive>
+
+## Personalization
+
+Let's add a human touch to the color wheel. Instead of a direct, 360-degree HSL color wheel mapping, I'd like to personalize the color that maps to each heading.
+
+Let's map it so:
+
+- North = Cyan
+- East = Yellow
+- South = Red
+- West = Purple
+
+<MaybeInteractive
+  alt="Personalized color wheel mapping"
+  src="/img/personalized_color_concept.gif"
+>
+  <ColorWheel personalized />
+</MaybeInteractive>
+
+### Problem
+
+:::important
+
+Due to our personalized color scheme, we must map an HSL color wheel to our custom color wheel.
+
+Even though red is directly across from cyan both our custom and the HSL wheel, our problem is yellow is NOT directly across from purple in HSL, so we need a way of mapping between the two.
+
+:::
+
+### Solution
+
+First, let's define the HSL color wheel as four quadrants. Note that:
+
+- `0 - 90` degrees go from `red` to `yellow green`
+- `90 - 180` degrees go from `yellow green` to `cyan`
+- `180 - 270` degrees go from `cyan` to `violet`
+- `270 - 360` degrees go from `violet` to `red`
+
+```ts
+export const hslColorQuadrant: Record<Quadrant, Point> = {
+  [Quadrant.I]: [0, 90], // red to yellow green
+  [Quadrant.II]: [90, 180], // yellow green to cyan
+  [Quadrant.III]: [180, 270], // cyan to violet
+  [Quadrant.IV]: [270, 360], // violet to red
+};
+```
+[Source](https://github.com/r3dcrosse/mrwayman/blob/6584adde6d2feaee291b17e78fe9b28621947083/src/components/ColorWheel/utils.ts#L22) 
+
+Next, let's define our personalized color wheel:
+
+```ts
+/**
+ * Create a custom map of where on the HSL color wheel
+ * we'd like our colors to transition from/to.
+ *
+ * Combining this with the hslColorQuadrant we can produce
+ * a color map such as:
+ *
+ * 1) at 0 degrees on the wheel, display hsl(60deg, 100%, 50%)
+ * 2) at 90 degrees on the wheel, display hsl(180deg, 100%, 50%)
+ * 3) at 180 degrees on the wheel, display hsl(280deg, 100%, 50%)
+ * ... and so on
+ */
+export const hslToCustomColorQuadrant: Record<Quadrant, Point> = {
+  [Quadrant.I]: [60, 180],
+  [Quadrant.II]: [180, 280],
+  [Quadrant.III]: [280, 360],
+  [Quadrant.IV]: [0, 60],
+};
+```
+[Source](https://github.com/r3dcrosse/mrwayman/blob/6584adde6d2feaee291b17e78fe9b28621947083/src/components/ColorWheel/utils.ts#L41) 
+
+Now we can perform a linear interpolation between the two different color quadrants.
+
+```ts
+export function linearInterpolation(
+  x: number,
+  hsl: Point,
+  custom: Point
+): number {
+  const p1: Point = [hsl[0], custom[0]];
+  const p2: Point = [hsl[1], custom[1]];
+
+  /**
+   *     y₂-y₁
+   * m = -----
+   *     x₂-x₁
+   */
+  const deltaY = p2[1] - p1[1];
+  const deltaX = p2[0] - p1[0];
+  const m = deltaY / deltaX;
+  const b = p1[1] - parseFloat(m.toFixed(20)) * p1[0];
+
+  // Using y = mx + b
+  return parseFloat(m.toFixed(20)) * x + parseFloat(b.toFixed(20));
+}
+```
+[Source](https://github.com/r3dcrosse/mrwayman/blob/6584adde6d2feaee291b17e78fe9b28621947083/src/components/ColorWheel/utils.ts#L64) 
+
+## Result
+
+Putting all this together, we get an excellent tool for interacting with the Earth's magnetic field to produce a color that points us in a direction.
+
+A rat compass.
+
+![A rat compass](./_img/rat_compass_small.gif)
+
+## 2nd Iteration
+
+The next iteration of the compass sculptures included a WiFi chip and buttons so my partner and I could light each other's sculptures.
+
+![Next iteration](./_img/next_iteration.gif)
+
+### Buttons to "talk"
+
+Using a WiFi network between the compasses, I've included a button on each to light up the other's sculpture.
+
+![Bird compass lights up rat compass with the press of a button](./_img/rat_compass_2.gif)
+
+### A Happy Camper
+
+My partner with their bird compass mounted on a bicycle.
+
+![My partner being a happy camper](./_img/happy_camper.jpg)
