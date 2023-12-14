@@ -22,9 +22,9 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         "sparkle-motion/index",
-        "painting-poems-with-hashes/index",
+        "painting-poems-from-hashes/index",
         "directions-from-a-rat/index",
-        "animated-light-painting/index",
+        "animating-light-painting/index",
         "exploring-css-mix-blend-mode/index",
       ],
     },

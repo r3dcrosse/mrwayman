@@ -81,6 +81,10 @@
   color: #f9f5e0;
 }
 
+.notfound__title {
+  color: #1b1f27;
+}
+
 /* [data-theme="dark"] .hero__title,
 [data-theme="dark"] .hero__subtitle {
   color: #f9f5e0;
@@ -124,6 +128,12 @@
 
 .ellipse__blob {
   margin: 1rem;
+}
+
+.ellipse__blob--wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hi {
@@ -181,7 +191,8 @@
 
 .project--wrapper:hover {
   background-color: var(--ifm-hero-background-color);
-  transition: all var(--ifm-transition-fast) var(--ifm-transition-timing-default);
+  transition: all var(--ifm-transition-fast)
+    var(--ifm-transition-timing-default);
 }
 
 .project--wrapper > a {
@@ -228,7 +239,8 @@
 
 .project--wrapper:hover .project_desc--wrapper > h2 {
   text-decoration: underline;
-  transition: all var(--ifm-transition-fast) var(--ifm-transition-timing-default);
+  transition: all var(--ifm-transition-fast)
+    var(--ifm-transition-timing-default);
 }
 
 .project_subtitle--1,

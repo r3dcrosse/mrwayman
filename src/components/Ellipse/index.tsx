@@ -6,11 +6,7 @@ import Ellipse9 from "./ellipse9.svg";
 function Wrapper({ children }): JSX.Element {
   return (
     <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+      className="ellipse__blob--wrapper"
     >
       {children}
     </div>

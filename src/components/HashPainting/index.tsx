@@ -118,8 +118,12 @@ export default function HashPainting({
      * If the play button isn't pressed,
      * make a hash of the entire textarea contents.
      */
-    getHash(isPlaying || index !== 0 ? words[index] : text);
-  }, [isPlaying, words, index, maxFrameBuffer]);
+    if (isPlaying) {
+      getHash(words[index]);
+    } else {
+      getHash(text);
+    }
+  }, [isPlaying, words, index]);
 
   const handleReset = () => {
     setIndex(0);
@@ -160,11 +164,13 @@ export default function HashPainting({
           top: "0",
         }}
       >
-        <h1>Painting Poems with Hashes</h1>
-        <p>Enter a poem or text, then press the play button.</p>
+        <h1>Painting poems from hashes</h1>
+        <p>Enter a poem or any text, then press the play.</p>
         <p>
-          Each word is hashed using SHA-256, then colors are generated from the
-          hexadecimal characters in the hash. The result is a "hash-painting."
+          Each word is hashed using SHA-256, then a grid of colors are generated
+          from the characters in the hash.
+          <br />
+          The result is a hash painting!
         </p>
         {!isPlaying && (
           <textarea

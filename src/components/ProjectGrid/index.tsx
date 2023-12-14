@@ -18,14 +18,14 @@ const projects: Array<Project> = [
     subtitle2: "Web UI for interacting with LEDs on the BAAAHS Burning Man art car.",
   },
   {
-    title: "Painting Poems with Hashes",
+    title: "Painting poems from hashes",
     imageURL: "/img/hash_painting.gif",
-    projectURL: "/projects/painting-poems-with-hashes",
+    projectURL: "/projects/painting-poems-from-hashes",
     subtitle1: "React.js | SHA-256 | Hex Colors",
     subtitle2: "A tool to convert text to colorful visuals.",
   },
   {
-    title: "Directions from a Rat",
+    title: "Directions from a rat",
     imageURL: "/img/rat_compass_small.gif",
     projectURL: "/projects/sparkle-motion",
     subtitle1: "Arduino | Compass Sensor | LEDs",
@@ -33,7 +33,7 @@ const projects: Array<Project> = [
       "Let's make it possible to interact with Earth's magnetic field as a colorful, synesthetic experience.",
   },
   {
-    title: "Projection Mapping",
+    title: "Animating light painting",
     imageURL: "/img/projection_mapping_home.gif",
     projectURL: "/projects/sparkle-motion",
     subtitle1: "Ultra short-throw projectors | MadMapper",

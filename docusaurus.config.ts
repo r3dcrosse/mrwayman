@@ -5,7 +5,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 const config: Config = {
   title: "David Wayman",
   tagline:
-    "Full-stack software engineer with 6+ years of experience and 4 patents. Specialized in React/TypeScript and shipped back-end features in Go. Passionate about innovative user experiences and well-documented, maintainable code.",
+    "Software engineer with 6+ years of experience and 4 patents. Specializing in React/TypeScript and shipping back-end features in Go and Python. Passionate about innovative user experiences and well-documented, maintainable code.",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -82,11 +82,40 @@ const config: Config = {
       style: "dark",
       links: [
         {
-          title: "Portfolio",
+          title: "Pages",
           items: [
             {
-              label: "All Projects",
+              label: "Home",
+              to: "/",
+            },
+            {
+              label: "Projects",
               to: "/projects",
+            }
+          ]
+        },
+        {
+          title: "Projects",
+          items: [
+            {
+              label: "Sparkle Motion",
+              to: "/projects/sparkle-motion",
+            },
+            {
+              label: "Painting poems from hashes",
+              to: "/projects/painting-poems-from-hashes",
+            },
+            {
+              label: "Directions from a rat",
+              to: "/projects/directions-from-a-rat",
+            },
+            {
+              label: "Animating light painting",
+              to: "/projects/animating-light-painting",
+            },
+            {
+              label: "Exploring CSS: mix-blend-mode",
+              to: "/projects/exploring-css-mix-blend-mode",
             },
             /**
              * Disable Blog until you have blog posts ready

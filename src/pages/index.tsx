@@ -22,33 +22,53 @@ function HomepageHeader() {
           style={{
             width: "100%",
             display: "flex",
-            justifyContent: "space-around",
+            justifyContent: "center",
             alignItems: "center",
             flexWrap: "wrap",
           }}
         >
-          <Ellipse variation={9}>
-            <div className="ellipse_h--1">6+</div>
-            <div className="ellipse_text">years of experience</div>
-          </Ellipse>
-          <Ellipse variation={6}>
-            <div className="ellipse_h--1">4</div>
-            <div className="ellipse_text">patents</div>
-          </Ellipse>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Ellipse variation={9}>
+              <div className="ellipse_h--1">6+</div>
+              <div className="ellipse_text">years of experience</div>
+            </Ellipse>
+            <Ellipse variation={6}>
+              <div className="ellipse_h--1">4</div>
+              <div className="ellipse_text">patents</div>
+            </Ellipse>
+          </div>
           <img
             alt="David Wayman smiling for the camera"
             loading="lazy"
             src={require("@site/static/img/david.png").default}
-            style={{ width: "187px", height: "180px", margin: "1rem" }}
+            style={{
+              width: "187px",
+              height: "180px",
+              margin: "1rem",
+            }}
           />
-          <Ellipse variation={7}>
-            <div className="ellipse_h--2">React / TypeScript</div>
-            <div className="ellipse_text">specialization</div>
-          </Ellipse>
-          <Ellipse variation={8}>
-            <div className="ellipse_h--2">Go / Python</div>
-            <div className="ellipse_text">experience</div>
-          </Ellipse>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Ellipse variation={7}>
+              <div className="ellipse_h--2">React / TypeScript</div>
+              <div className="ellipse_text">specialization</div>
+            </Ellipse>
+            <Ellipse variation={8}>
+              <div className="ellipse_h--2">Go / Python</div>
+              <div className="ellipse_text">experience</div>
+            </Ellipse>
+          </div>
         </div>
         <div>
           <div className="hi">Hi, I'm</div>
@@ -74,7 +94,6 @@ export default function Home(): JSX.Element {
             Projects
           </h1>
         </Link>
-
         <ProjectGrid />
       </main>
     </Layout>
