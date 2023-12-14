@@ -30,8 +30,21 @@ This web UI tool lets anyone generate visuals from text and download a .png of t
 
 I started by using a browser `<input />`, generating a SHA-256 hash from the text, then rendering the hash in a grid.
 
-<MaybeInteractive src="/img/hash-painting-concept.gif">
-  <PixelGenerator art={Art.rawHash} defaultText="Hello, world!" />
+<MaybeInteractive
+  src="/img/hash-painting-concept.gif"
+  alt="Hash painting concept"
+>
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      flexWrap: "wrap",
+    }}
+  >
+    <PixelGenerator art={Art.rawHash} defaultText="Hello, world!" />
+    <img src="/img/hash-painting-concept.gif" alt="Hash painting concept" />
+  </div>
 </MaybeInteractive>
 
 <div style={{ marginTop: "1rem" }} />
@@ -42,16 +55,48 @@ The hash grid resembles a word search where we can find hex colors anywhere with
 
 Here's an example: let's use every six characters as our hex color and set it as the background color in each pixel.
 
-<MaybeInteractive src="/img/hash-grid-color-concept.gif">
-  <PixelGenerator art={Art.horizontalHexColor} defaultText="Hello, world!" />
+<MaybeInteractive
+  src="/img/hash-grid-color-concept.gif"
+  alt="Hash painting concept with colors"
+>
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      flexWrap: "wrap",
+    }}
+  >
+    <PixelGenerator art={Art.horizontalHexColor} defaultText="Hello, world!" />
+    <img
+      src="/img/hash-grid-color-concept.gif"
+      alt="Hash painting concept with colors"
+    />
+  </div>
 </MaybeInteractive>
 
 <div style={{ marginTop: "1rem" }} />
 
 Let's use a different algorithm for finding hex colors in our grid.
 
-<MaybeInteractive src="/img/hash-grid-color-concept-2.gif">
-  <PixelGenerator art={Art.verticalHexColor} defaultText="Hello, world!" />
+<MaybeInteractive
+  src="/img/hash-grid-color-concept-2.gif"
+  alt="Hash painting concept with diagonal colors"
+>
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      flexWrap: "wrap",
+    }}
+  >
+    <PixelGenerator art={Art.verticalHexColor} defaultText="Hello, world!" />
+    <img
+      src="/img/hash-grid-color-concept-2.gif"
+      alt="Hash painting concept with diagonal colors"
+    />
+  </div>
 </MaybeInteractive>
 
 <div style={{ marginTop: "1rem" }} />
@@ -62,10 +107,27 @@ Let's use a different algorithm for finding hex colors in our grid.
 
 Packaging the above concepts into a web UI, we get a tool that generates text-based visuals.
 
+The length of each word determines the pixel pattern generated.
+
 ![Painting poems from hashes](./_img/hash-painting-result.gif)
 
 ### Saving as a .png
 
 The hash painting can also be saved and downloaded from the tool.
 
+<div 
+  style={{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+  }}
+>
+
 ![A saved hash poem](./_img/saved-hash-poem.png)
+
+![A saved hash poem](./_img/saved-hash-poem2.png)
+
+![A saved hash poem](./_img/saved-hash-poem3.png)
+
+</div>
