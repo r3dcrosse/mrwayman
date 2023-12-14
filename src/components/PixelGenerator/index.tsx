@@ -45,6 +45,10 @@ interface Props {
    * Default is 25px.
    */
   pixelSize?: number;
+  /**
+   * defaultText: Text to use in the text input by default.
+   */
+  defaultText?: string;
 }
 
 export default function PixelGenerator({
@@ -52,8 +56,9 @@ export default function PixelGenerator({
   art = Art.pixel,
   value,
   pixelSize = 25,
+  defaultText = "",
 }: Props): JSX.Element {
-  const [text, setText] = useState<string>("");
+  const [text, setText] = useState<string>(defaultText);
   const [SHA256Hash, setSHA256Hash] = useState<string>("");
   const [blur, setBlur] = useState<string>("0");
   const [hueRotation, setHueRotation] = useState<string>("0");
@@ -84,6 +89,7 @@ export default function PixelGenerator({
         onChange={(e) => {
           setText(e.target.value);
         }}
+        value={text}
         style={{ marginBottom: "1rem" }}
       />
       <PixelGrid

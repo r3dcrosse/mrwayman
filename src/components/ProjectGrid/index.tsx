@@ -19,10 +19,10 @@ const projects: Array<Project> = [
   },
   {
     title: "Painting poems from hashes",
-    imageURL: "/img/hash_painting.gif",
+    imageURL: "/img/painting-poems-from-hashes.gif",
     projectURL: "/projects/painting-poems-from-hashes",
     subtitle1: "React.js | SHA-256 | Hex Colors",
-    subtitle2: "A tool to convert text to colorful visuals.",
+    subtitle2: "A tool for converting poems and text into colorful visuals, all through the magic of hashes.",
   },
   {
     title: "Directions from a rat",

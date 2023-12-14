@@ -6,24 +6,26 @@ interface Props {
   hash: string;
   rowIndex: number;
   columnIndex: number;
+  colorArray: Array<Array<string>>;
   art?: Art.horizontalHexColor | Art.verticalHexColor;
   pixelSize?: number;
+  char?: string;
 }
 
 export default function HexRow({
   hash,
   rowIndex,
   columnIndex,
+  colorArray,
   art = Art.horizontalHexColor,
   pixelSize,
+  char,
 }: Props): JSX.Element {
-  const colorIndex = rowIndex + columnIndex;
+  let colorIndex = 8 * rowIndex + columnIndex;
 
-  // We can get a color every 6 characters
   if (art === Art.horizontalHexColor) {
-    const startOfColor = Math.floor(colorIndex / 6) + rowIndex;
-    const endOfColor = startOfColor + 6;
-    const hexColor = hash.slice(startOfColor, endOfColor);
+    const startOfColor = Math.floor(colorIndex / 6);    
+    const hexColor = colorArray[startOfColor].join("");
 
     return (
       <div
@@ -32,10 +34,19 @@ export default function HexRow({
           height: `${pixelSize}px`,
           backgroundColor: `#${hexColor}`,
           transition: "background-color 0.2s",
+          textAlign: "center",
         }}
-      />
+      >
+        {char && (
+          <span style={{ mixBlendMode: "difference", color: "white" }}>
+            {char}
+          </span>
+        )}
+      </div>
     );
   }
+
+  colorIndex = rowIndex + columnIndex;
 
   // Cool vertical bars kinda effect
   // const startOfColor = Math.floor(rowIndex / 6) + columnIndex;
@@ -127,7 +138,14 @@ export default function HexRow({
         height: `${pixelSize}px`,
         backgroundColor: `#${hexColor}`,
         transition: "background-color 0.2s",
+        textAlign: "center",
       }}
-    />
+    >
+      {char && (
+        <span style={{ mixBlendMode: "difference", color: "white" }}>
+          {char}
+        </span>
+      )}
+    </div>
   );
 }

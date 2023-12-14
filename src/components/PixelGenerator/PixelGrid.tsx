@@ -21,6 +21,17 @@ export default function PixelGrid({
   pixelSize,
 }: Props): JSX.Element {
   const grid = makeGridArray(sha256Hash);
+  
+  const width = 6;
+  const charArray = sha256Hash.split("");
+  const colorArray = [];
+
+  if (sha256Hash) {
+    for (let i = 0; i < Math.ceil(sha256Hash.length / 6); i++) {
+      const row = i * width;
+      colorArray.push(charArray.slice(row, row + width));
+    }
+  }
 
   return (
     <div
@@ -40,10 +51,12 @@ export default function PixelGrid({
                     art === Art.verticalHexColor) && (
                     <HexRow
                       hash={sha256Hash}
+                      colorArray={colorArray}
                       rowIndex={rowIndex}
                       columnIndex={columnIndex}
                       art={art}
                       pixelSize={pixelSize}
+                      char={r}
                     />
                   )}
                 </div>

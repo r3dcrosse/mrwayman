@@ -2,7 +2,70 @@
 displayed_sidebar: projectSidebar
 ---
 
+import MaybeInteractive from "../../src/components/MaybeInteractive";
+import PixelGenerator, {
+  Controls,
+  Art,
+} from "../../src/components/PixelGenerator";
+
 # Painting poems from hashes
 
-Check it out: [https://mrwayman.com/painting-poems-from-hashes](/painting-poems-from-hashes)
+## Overview
 
+Inspired by GitHub's default profile avatar [identicon](https://en.wikipedia.org/wiki/Identicon), I wanted to build a tool that generates visuals from any text, from a poem to source code to quotes or paragraphs of a novel.
+
+This web UI tool lets anyone generate visuals from text and download a .png of the final result.
+
+|                    |                                                                                                                                                                                                           |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <b>Role</b>        | Creator, designer, developer                                                                                                                                                                              |
+| <b>Link</b>        | <a href="https://mrwayman.com/painting-poems-from-hashes" target="_blank">https://mrwayman.com/painting-poems-from-hashes</a>                                                                             |
+| <b>Source Code</b> | <a href="https://github.com/r3dcrosse/mrwayman/blob/main/src/components/HashPainting/index.tsx" target="_blank">https://github.com/r3dcrosse/mrwayman/blob/main/src/components/HashPainting/index.tsx</a> |
+
+![A demo of hash painting](./_img/hash-painting-large.gif)
+
+## Concept
+
+### Hash
+
+I started by using a browser `<input />`, generating a SHA-256 hash from the text, then rendering the hash in a grid.
+
+<MaybeInteractive src="/img/hash-painting-concept.gif">
+  <PixelGenerator art={Art.rawHash} defaultText="Hello, world!" />
+</MaybeInteractive>
+
+<div style={{ marginTop: "1rem" }} />
+
+### Color
+
+The hash grid resembles a word search where we can find hex colors anywhere within the grid.
+
+Here's an example: let's use every six characters as our hex color and set it as the background color in each pixel.
+
+<MaybeInteractive src="/img/hash-grid-color-concept.gif">
+  <PixelGenerator art={Art.horizontalHexColor} defaultText="Hello, world!" />
+</MaybeInteractive>
+
+<div style={{ marginTop: "1rem" }} />
+
+Let's use a different algorithm for finding hex colors in our grid.
+
+<MaybeInteractive src="/img/hash-grid-color-concept-2.gif">
+  <PixelGenerator art={Art.verticalHexColor} defaultText="Hello, world!" />
+</MaybeInteractive>
+
+<div style={{ marginTop: "1rem" }} />
+
+## Result
+
+### Web UI
+
+Packaging the above concepts into a web UI, we get a tool that generates text-based visuals.
+
+![Painting poems from hashes](./_img/hash-painting-result.gif)
+
+### Saving as a .png
+
+The hash painting can also be saved and downloaded from the tool.
+
+![A saved hash poem](./_img/saved-hash-poem.png)
