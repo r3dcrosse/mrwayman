@@ -53,7 +53,7 @@ export default function ColorWheelUI() {
           justifyContent: "center",
           alignItems: "center",
           flexWrap: "wrap-reverse",
-          gap: "4rem",
+          gap: "5rem",
           marginBottom: "4rem",
         }}
       >
