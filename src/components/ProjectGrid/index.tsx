@@ -24,7 +24,7 @@ const projects: Array<Project> = [
     projectURL: "/projects/painting-poems-from-hashes",
     subtitle1: "React.js | SHA-256 | Hex Colors",
     subtitle2:
-      "A tool for converting poems and text into colorful visuals, all through the magic of hashes.",
+      "A tool for converting poems and text into colorful visuals, all through the magic of hashing algorithms.",
   },
   {
     title: "Directions from a rat",
@@ -35,9 +35,9 @@ const projects: Array<Project> = [
       "A tool for interacting with Earth's magnetic field and exploring the intersection of computation and light to provide a sense of direction.",
   },
   {
-    title: "Animating light painting",
+    title: "Animating paintings of light",
     imageURL: "/img/animated-light-painting.gif",
-    projectURL: "/projects/animating-light-painting",
+    projectURL: "/projects/animating-paintings-of-light",
     subtitle1: "LEDs | Python | Long-exposure Photography",
     subtitle2:
       "Reproducing frames from Ryan Larkin's Walking (1968) using long-exposure photography while painting with light.",
@@ -47,7 +47,7 @@ const projects: Array<Project> = [
     imageURL: "/img/browser_color_wheels.gif",
     projectURL: "/projects/exploring-css-mix-blend-mode",
     subtitle1: "React.js | HSL Color | CSS Blend Modes",
-    subtitle2: "A playful exploration of color and CSS blend modes.",
+    subtitle2: "A playful exploration of color in the browser and built-in CSS blend modes.",
   },
 ];
 

@@ -110,8 +110,8 @@ const config: Config = {
               to: "/projects/directions-from-a-rat",
             },
             {
-              label: "Animating light painting",
-              to: "/projects/animating-light-painting",
+              label: "Animating paintings of light",
+              to: "/projects/animating-paintings-of-light",
             },
             {
               label: "Exploring CSS: mix-blend-mode",

@@ -24,7 +24,7 @@ const sidebars: SidebarsConfig = {
         "sparkle-motion/index",
         "painting-poems-from-hashes/index",
         "directions-from-a-rat/index",
-        "animating-light-painting/index",
+        "animating-paintings-of-light/index",
         "exploring-css-mix-blend-mode/index",
       ],
     },
