@@ -32,12 +32,19 @@ interface Props {
    * West -> Purple
    */
   personalized?: boolean;
+  /**
+   * showDegrees: optional boolean
+   * Displays the current degree of the color wheel
+   * Default is false
+   */
+  showDegrees?: boolean;
 }
 
 export default function ColorWheel({
   size = 300,
   isCompass = false,
   personalized = false,
+  showDegrees = false,
 }: Props): JSX.Element {
   const colorPointerSize = size / 10;
   const defaultREM = colorPointerSize / 10;
@@ -211,8 +218,23 @@ export default function ColorWheel({
           background: getColor(),
           margin: `${defaultREM}rem`,
           borderRadius: "4px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
-      ></div>
+      >
+        {showDegrees ? (
+          <span
+            style={{
+              mixBlendMode: "difference",
+              color: "white",
+              fontSize: "3rem",
+            }}
+          >
+            {normalizeDegrees(parseFloat(radToDegrees(hslTheta).toFixed(0)))}°
+          </span>
+        ) : null}
+      </div>
     </div>
   );
 }

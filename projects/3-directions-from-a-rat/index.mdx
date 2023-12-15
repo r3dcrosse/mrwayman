@@ -18,14 +18,24 @@ It started with this thought:
 > What if we made use of color to give us direction?
 > What would that look like?
 
-No, I don't have [Synesthesia](https://en.wikipedia.org/wiki/Synesthesia), but I do have some LEDs, a magnetometer (compass) sensor, and a plastic rat skeleton.
+I don't have [Synesthesia](https://en.wikipedia.org/wiki/Synesthesia), but I do have LEDs, a magnetometer (compass) sensor, and a plastic rat skeleton.
 
 Let's make it possible to interact with Earth's magnetic field as a colorful, synesthetic experience.
 
-|             |                               |
-| ----------- | ----------------------------- |
-| <b>Role</b> | Creator, designer, developer  |
-| <b>Tech</b> | LEDs, Arduino, compass sensor |
+<table>
+  <tr>
+    <td>
+      <b>Role</b>
+    </td>
+    <td>Creator, designer, developer</td>
+  </tr>
+  <tr>
+    <td>
+      <b>Tech</b>
+    </td>
+    <td>LEDs, Arduino, compass sensor</td>
+  </tr>
+</table>
 
 ## Concept
 
@@ -33,8 +43,8 @@ Let's make it possible to interact with Earth's magnetic field as a colorful, sy
 
 An HSL (Hue, Saturation, Lightness) color wheel is a convenient way to convert compass sensor data into color because color is represented in 0 - 360 degrees.
 
-<MaybeInteractive alt="Color wheel concept" src="/img/og_color_concept.gif">
-  <ColorWheel />
+<MaybeInteractive alt="Color wheel concept" src="/img/hsl-color-concept.gif">
+  <ColorWheel showDegrees />
 </MaybeInteractive>
 
 ### Compass Data
@@ -43,16 +53,14 @@ Replacing the color wheel with a compass but keeping the same effect as above pr
 
 <MaybeInteractive
   alt="Compass data mapped to a color wheel"
-  src="/img/color_compass_concept.gif"
+  src="/img/hsl-compass-concept.gif"
 >
-  <ColorWheel isCompass />
+  <ColorWheel isCompass showDegrees />
 </MaybeInteractive>
 
 ## Personalization
 
-Let's add a human touch to the color wheel. Instead of a direct, 360-degree HSL color wheel mapping, I'd like to personalize the color that maps to each heading.
-
-Let's map it so:
+Let's add a human touch to our color scheme. Instead of a direct mapping of the 360-degree HSL wheel to the compass heading, I wanted to personalize it such that:
 
 - North = Cyan
 - East = Yellow
@@ -61,9 +69,9 @@ Let's map it so:
 
 <MaybeInteractive
   alt="Personalized color wheel mapping"
-  src="/img/personalized_color_concept.gif"
+  src="/img/personalized-color-concept.gif"
 >
-  <ColorWheel personalized />
+  <ColorWheel personalized showDegrees />
 </MaybeInteractive>
 
 ### Problem
@@ -93,9 +101,10 @@ export const hslColorQuadrant: Record<Quadrant, Point> = {
   [Quadrant.IV]: [270, 360], // violet to red
 };
 ```
-[Source](https://github.com/r3dcrosse/mrwayman/blob/6584adde6d2feaee291b17e78fe9b28621947083/src/components/ColorWheel/utils.ts#L22) 
 
-Next, let's define our personalized color wheel:
+[_View snippet on GitHub_](https://github.com/r3dcrosse/mrwayman/blob/6584adde6d2feaee291b17e78fe9b28621947083/src/components/ColorWheel/utils.ts#L22)
+
+Next, let's define our personalized color wheel mapping.
 
 ```ts
 /**
@@ -117,9 +126,10 @@ export const hslToCustomColorQuadrant: Record<Quadrant, Point> = {
   [Quadrant.IV]: [0, 60],
 };
 ```
-[Source](https://github.com/r3dcrosse/mrwayman/blob/6584adde6d2feaee291b17e78fe9b28621947083/src/components/ColorWheel/utils.ts#L41) 
 
-Now we can perform a linear interpolation between the two different color quadrants.
+[_View snippet on GitHub_](https://github.com/r3dcrosse/mrwayman/blob/6584adde6d2feaee291b17e78fe9b28621947083/src/components/ColorWheel/utils.ts#L41)
+
+We can now perform a linear interpolation between the two color quadrants.
 
 ```ts
 export function linearInterpolation(
@@ -144,7 +154,8 @@ export function linearInterpolation(
   return parseFloat(m.toFixed(20)) * x + parseFloat(b.toFixed(20));
 }
 ```
-[Source](https://github.com/r3dcrosse/mrwayman/blob/6584adde6d2feaee291b17e78fe9b28621947083/src/components/ColorWheel/utils.ts#L64) 
+
+[_View snippet on GitHub_](https://github.com/r3dcrosse/mrwayman/blob/6584adde6d2feaee291b17e78fe9b28621947083/src/components/ColorWheel/utils.ts#L64)
 
 ## Result
 
