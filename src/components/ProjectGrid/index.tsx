@@ -47,7 +47,7 @@ const projects: Array<Project> = [
     imageURL: "/img/browser_color_wheels.gif",
     projectURL: "/projects/exploring-css-mix-blend-mode",
     subtitle1: "React.js | HSL Color | CSS Blend Modes",
-    subtitle2: "A playful exploration of color in the browser and built-in CSS blend modes.",
+    subtitle2: "A tool for playful exploration of color in the browser and built-in CSS blend modes.",
   },
 ];
 

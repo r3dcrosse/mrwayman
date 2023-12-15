@@ -95,6 +95,7 @@ export default function Home(): JSX.Element {
           </h1>
         </Link>
         <ProjectGrid />
+        <div style={{marginTop: "5rem"}} />
       </main>
     </Layout>
   );

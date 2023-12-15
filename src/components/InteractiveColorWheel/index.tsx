@@ -23,13 +23,14 @@ export default function InteractiveColorWheel({
         flexWrap: "wrap-reverse",
       }}
     >
-      <div>
+      <div style={{ flexGrow: 0, flexShrink: 0 }}>
         <label
           style={{
             display: "flex",
             alignItems: "center",
-            padding: "1rem",
-            width: "200px",
+            // padding: "1rem",
+            margin: "2rem",
+            width: "100%",
           }}
         >
           <span>Rotation</span>
@@ -46,7 +47,7 @@ export default function InteractiveColorWheel({
             type="range"
             style={{ margin: "0 1rem" }}
           />
-          <span>{rotation}°</span>
+          <div style={{ width: "75px" }}>{rotation}°</div>
         </label>
       </div>
       <div
@@ -68,5 +69,3 @@ export default function InteractiveColorWheel({
     </div>
   );
 }
-
-

@@ -1,6 +1,5 @@
 import React from "react";
-
-import ColorWheel from "../../../src/components/ColorWheel";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 
 interface Props {
   src: string;
@@ -24,10 +23,9 @@ export default function MaybeInteractive({
    * Then if we have JavaScript, swap the GIF out
    * with our react component
    */
-  if (typeof window !== "undefined" && typeof document !== "undefined") {
-    return <>{children}</>;
-  }
-
-  // By default we want to render an image or GIF
-  return <img src={src} alt={alt} />;
+  return (
+    <BrowserOnly fallback={<img src={src} alt={alt} loading="lazy" />}>
+      {() => <>{children}</>}
+    </BrowserOnly>
+  );
 }
