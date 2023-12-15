@@ -85,6 +85,10 @@
   color: #1b1f27;
 }
 
+[data-theme="dark"] .notfound__title {
+  color: #f9f5e0;
+}
+
 /* [data-theme="dark"] .hero__title,
 [data-theme="dark"] .hero__subtitle {
   color: #f9f5e0;
